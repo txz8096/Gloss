@@ -11,8 +11,8 @@
       * { box-sizing:border-box; }
       body { margin:0; color:var(--ink); background:var(--paper); font-family:'DM Sans', sans-serif; font-size:14px; }
       button { font:inherit; cursor:pointer; }
-      .app { min-height:100vh; display:grid; grid-template-columns:252px minmax(0,1fr); }
-      .side { border-right:1px solid var(--line); padding:24px 16px; background:#fdfcf9; display:flex; flex-direction:column; position:sticky; top:0; height:100vh; }
+      .app { min-height:100vh; }
+      .side { display:none; }
       .brand { font-family:var(--display); font-size:30px; letter-spacing:-1.6px; display:flex; align-items:center; gap:8px; padding:0 8px 34px; }
       .brand-mark { width:19px; height:19px; border-radius:50% 50% 3px 50%; background:var(--coral); transform:rotate(45deg); display:inline-block; }
       .project { background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:12px; margin:0 0 25px; }
@@ -24,21 +24,32 @@
       .step:hover { background:#f3f0ea; color:var(--ink); }
       .step.active { background:var(--ink); color:#fff; }
       .step.locked { opacity:.4; cursor:not-allowed; } .step.locked:hover { background:transparent; color:#5e5952; }
-      .step-dot { width:20px; height:20px; border:1px solid currentColor; border-radius:50%; display:grid; place-items:center; font-family:'DM Mono', monospace; font-size:10px; }
+      .step-dot { width:20px; height:20px; border:1px solid currentColor; border-radius:50%; display:grid; place-items:center; font-family:'DM Mono', monospace; font-size:10px; font-style:normal; line-height:1; }
       .step.done .step-dot { background:var(--green); border-color:var(--green); color:#fff; }
       .side-foot { margin-top:auto; border-top:1px solid var(--line); padding:17px 8px 2px; color:var(--muted); font-size:12px; line-height:1.5; }
       .side-foot b { color:var(--ink); display:block; }
       main { min-width:0; }
-      .topbar { height:74px; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--line); padding:0 42px; }
-      .crumb { color:var(--muted); } .crumb b { color:var(--ink); font-weight:500; }
-      .progress { display:flex; align-items:center; gap:10px; color:var(--muted); font-size:12px; } .progress-bar { height:5px; width:120px; background:#e9e4dc; border-radius:20px; overflow:hidden; } .progress-bar i { display:block; width:58%; height:100%; background:var(--lav); border-radius:20px; }
+      .topbar { min-height:64px; display:flex; justify-content:space-between; align-items:center; gap:26px; border-bottom:1px solid var(--line); padding:8px 42px; background:#fdfcf9; }
+      .topbar-brand { display:flex; align-items:center; gap:16px; flex:0 0 auto; }
+      .topbar .brand { padding:0; font-size:27px; }
+      .crumb { max-width:210px; overflow:hidden; color:var(--muted); padding-left:16px; border-left:1px solid var(--line); text-overflow:ellipsis; white-space:nowrap; } .crumb b { color:var(--ink); font-weight:500; }
+      .top-stepper { display:flex; align-items:center; justify-content:center; gap:4px; min-width:0; flex:1 1 auto; }
+      .top-stepper .step { width:auto; white-space:nowrap; padding:9px 10px; gap:7px; font-size:12px; }
+      .top-stepper .step-dot { width:18px; height:18px; font-size:9px; }
       .page { max-width:1320px; margin:0 auto; padding:44px 42px 80px; }
       .heading { display:flex; align-items:end; justify-content:space-between; gap:30px; margin-bottom:28px; }
       h1 { font-family:var(--display); font-weight:500; letter-spacing:-1.6px; font-size:42px; line-height:1.04; margin:7px 0 0; }
       .heading p { color:var(--muted); max-width:390px; line-height:1.5; margin:0; }
+      #calibrate .heading > div { flex:1; } #calibrate .heading .calibrate-subtitle { max-width:720px; margin-top:12px; font-size:15px; }
       .context { padding:15px 17px; background:#fff; border:1px solid var(--line); border-radius:12px; display:flex; gap:15px; align-items:flex-start; margin-bottom:34px; }
       .context-symbol { color:#fff; background:var(--coral); width:26px; height:26px; border-radius:8px; display:grid; place-items:center; font-weight:700; }
       .context-copy { line-height:1.45; color:#4b4640; } .context-copy b { color:var(--ink); } .context-copy button { border:0; color:var(--muted); background:none; text-decoration:underline; padding:0; }
+      .context-review { margin:-20px 0 34px; padding:18px 20px; border:1px solid var(--line); border-top:0; border-radius:0 0 12px 12px; background:#fff; } .context-review[hidden] { display:none; } .context-review-top { display:flex; justify-content:space-between; gap:18px; align-items:flex-start; } .context-review h2 { font-size:21px; margin:3px 0 0; } .context-review p { margin:7px 0 0; color:var(--muted); font-size:12px; line-height:1.45; max-width:570px; } .context-link { border:0 !important; min-height:0 !important; padding:0 !important; background:transparent !important; color:var(--muted) !important; text-decoration:underline; font-size:12px; } .context-review-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:18px; } .context-review label { display:grid; gap:6px; color:#605a53; font-size:11px; font-weight:700; } .context-review input { width:100%; box-sizing:border-box; border:1px solid var(--line); border-radius:7px; padding:9px 10px; color:var(--ink); background:#f8f7f4; font:12px 'DM Sans',sans-serif; } .context-review input:disabled { color:#514b45; } .context-review-actions { display:flex; align-items:center; justify-content:flex-end; gap:9px; margin-top:17px; } .context-review-actions button { min-height:35px; border-radius:7px; padding:0 12px; border:1px solid var(--line); background:#fff; color:var(--ink); } .context-review-actions .primary { border-color:var(--ink); background:var(--ink); color:#fff; } .context-modal { position:fixed; inset:0; z-index:10; display:grid; place-items:center; padding:24px; background:#211d1944; } .context-modal[hidden] { display:none; } .context-modal-dialog { width:min(430px,100%); padding:24px; border-radius:14px; background:#fff; box-shadow:0 18px 45px #0003; } .context-modal-dialog h3 { margin:6px 0 8px; font:500 26px/1.05 var(--display); letter-spacing:-.5px; } .context-modal-dialog p { margin:0; color:var(--muted); font-size:13px; line-height:1.5; } .context-modal-actions { display:flex; justify-content:flex-end; gap:14px; align-items:center; margin-top:22px; } .context-preview-notice { margin:0 0 18px; padding:10px 12px; border-radius:8px; background:#f0f6f1; color:#3f6b4c; font-size:12px; }
+      .context-summary { display:grid; grid-template-columns:1.25fr 1fr 1fr; border-top:1px solid var(--line); border-bottom:1px solid var(--line); margin-top:18px; } .context-summary div { padding:14px 16px 14px 0; margin-right:16px; border-right:1px solid var(--line); } .context-summary div:last-child { border:0; margin-right:0; } .context-summary span { display:block; color:#716a62; font-size:10px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; } .context-summary b { display:block; margin:6px 0 4px; font-size:13px; } .context-summary p { margin:0; }
+      .theme-lens { border:1px solid var(--line); border-radius:12px; background:#fff; padding:17px 19px; margin:-17px 0 25px; display:grid; grid-template-columns:185px minmax(0,1fr); gap:22px; align-items:center; }
+      .calibration .theme-lens { display:block; margin:0 25px 22px; padding:0; border:0; background:transparent; }
+      .theme-lens h2 { margin:4px 0 0; font-size:20px; } .theme-lens p { color:var(--muted); font-size:12px; line-height:1.45; margin:7px 0 0; }
+      .lens-controls { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; } .lens-control { min-width:0; } .lens-control label { display:flex; justify-content:space-between; gap:8px; margin-bottom:8px; color:#5f5953; font-size:10px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; } .lens-control label span { color:var(--muted); font-weight:500; letter-spacing:0; text-transform:none; }
       .workspace { display:grid; grid-template-columns:minmax(0,1fr) 282px; gap:25px; }
       .calibration { border:1px solid var(--line); border-radius:var(--radius); background:#fff; overflow:hidden; }
       .cal-head { padding:23px 25px 18px; border-bottom:1px solid var(--line); display:flex; justify-content:space-between; align-items:start; }
@@ -46,22 +57,37 @@
       .counter { font-family:'DM Mono', monospace; color:var(--muted); font-size:11px; padding-top:6px; }
       .prompt { padding:19px 25px; background:#fcfbf8; display:flex; justify-content:space-between; align-items:center; gap:20px; }
       .prompt strong { font-size:15px; } .prompt span { color:var(--muted); display:block; font-size:12px; padding-top:3px; }
+      .own-screen-tool { display:flex; align-items:center; justify-content:space-between; gap:16px; margin:0 25px 18px; padding:13px; border:1px solid #e1dad1; border-radius:8px; background:#faf8f4; } .own-screen-copy { display:flex; align-items:center; gap:10px; min-width:0; } .own-screen-icon { width:25px; height:25px; display:grid; place-items:center; flex:0 0 auto; border-radius:6px; background:#eee7df; color:#695d52; font-size:13px; } .own-screen-tool p { margin:0; color:var(--muted); font-size:12px; line-height:1.45; } .own-screen-tool p b { color:var(--ink); } .own-screen-actions { display:flex; align-items:center; gap:8px; flex:0 0 auto; } .own-screen-tool .screen-status { color:#477354; font-size:11px; font-weight:700; } .own-screen-tool .screen-status:empty { display:none; } .own-screen-tool button { border:1px solid #cfc5ba; border-radius:5px; padding:7px 9px; background:#fff; color:var(--ink); font-size:11px; font-weight:700; } .own-screen-tool .render-own-screen { border-color:var(--ink); background:var(--ink); color:#fff; } .own-screen-tool .render-own-screen:disabled { border-color:#d8d1c8; background:#d8d1c8; color:#867e74; cursor:wait; } .screen-render-note { display:block; margin-top:2px; color:#827a71; font-size:10px; }
       .pair { padding:0 25px 25px; display:grid; grid-template-columns:1fr 1fr; gap:16px; }
-      .option { position:relative; min-height:390px; background:var(--panel); border:1.5px solid transparent; border-radius:12px; overflow:hidden; text-align:left; padding:0; transition:.18s ease; }
+      .option { position:relative; min-height:0; display:block; background:var(--panel); border:1.5px solid transparent; border-radius:12px; overflow:hidden; text-align:left; padding:0; transition:.18s ease; }
       .option:hover { border-color:#c8c0b6; transform:translateY(-2px); } .option.selected { border-color:var(--lav); box-shadow:0 0 0 3px var(--lav-soft); }
+      button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible { outline:3px solid #6e5ee6; outline-offset:2px; } .option:focus-visible { outline-offset:3px; }
       .option-bar { display:flex; align-items:center; gap:8px; background:#fff; padding:13px 14px; border-bottom:1px solid var(--line); } .letter { width:21px; height:21px; display:grid; place-items:center; border-radius:50%; background:var(--ink); color:#fff; font:10px 'DM Mono',monospace; }
       .option-bar b { font-size:13px; } .option-bar span { margin-left:auto; font-size:11px; color:var(--muted); }
-      .mock { height:333px; padding:22px; position:relative; overflow:hidden; }
-      .mock.editorial { background:#f1e9df; } .mock.product { background:#eef0eb; }
-      .mock-nav { display:flex; justify-content:space-between; font-size:8px; letter-spacing:.05em; } .mock-logo { font-family:var(--display); font-size:14px; letter-spacing:-.8px; }
-      .mock-hero { margin:49px 7px 0; } .mock-hero h3 { font-family:var(--display); font-weight:500; font-size:37px; letter-spacing:-1.7px; line-height:.94; max-width:270px; margin:0; } .mock-hero p { font-size:10px; color:#605a54; max-width:180px; line-height:1.5; margin-top:15px; }
-      .mock-cta { margin-top:16px; display:inline-block; padding:8px 11px; background:var(--coral); color:#fff; border-radius:20px; font-size:9px; }
+      .option[data-visual="editorial"] .option-bar { background:#f1e9df; } .option[data-visual="product"] .option-bar { background:#eef0eb; } .option[data-visual="judgment"] .option-bar { background:#f0e8df; } .option[data-visual="workflow"] .option-bar { background:#e9efea; } .option[data-visual="quiet"] .option-bar { background:#f3eee7; } .option[data-visual="signal"] .option-bar { background:#24243a; border-color:#48465c; color:#fff; } .option[data-visual="signal"] .option-bar span { color:#e6e2ff; }
+      .mock { height:333px; padding:22px; position:relative; overflow-y:auto; overflow-x:hidden; scrollbar-width:thin; scrollbar-color:#bcb5ad transparent; }
+      .mock.has-uploaded-screen { padding:0; overflow:hidden; background:#f4f1ec; } .mock.has-uploaded-screen > :not(.uploaded-screen) { display:none; } .uploaded-screen { position:absolute; inset:0; background-position:center; background-size:contain; background-repeat:no-repeat; pointer-events:none; } .uploaded-screen::after { content:""; position:absolute; inset:0; background:rgba(245,239,231,.12); mix-blend-mode:multiply; } .uploaded-screen-label,.uploaded-screen-meta { position:absolute; z-index:1; left:12px; padding:5px 7px; border-radius:4px; background:rgba(255,255,255,.9); color:#3c342d; font:700 9px 'DM Mono',monospace; letter-spacing:.06em; text-transform:uppercase; } .uploaded-screen-label { top:12px; } .uploaded-screen-meta { bottom:12px; font-size:8px; letter-spacing:.04em; text-transform:none; } .option[data-visual="editorial"] .mock.has-uploaded-screen { background:#eee2d4; } .option[data-visual="editorial"] .uploaded-screen { filter:sepia(.28) saturate(.82) brightness(1.03); } .option[data-visual="editorial"] .uploaded-screen::after { background:rgba(180,134,91,.2); } .option[data-visual="product"] .mock.has-uploaded-screen { background:#e5ece4; } .option[data-visual="product"] .uploaded-screen { filter:saturate(.72) contrast(1.09); } .option[data-visual="product"] .uploaded-screen::after { background:rgba(70,117,83,.16); } .option[data-visual="judgment"] .mock.has-uploaded-screen { background:#efe2d6; } .option[data-visual="judgment"] .uploaded-screen { filter:sepia(.32) saturate(.76) contrast(1.03); } .option[data-visual="judgment"] .uploaded-screen::after { background:rgba(138,82,56,.2); } .option[data-visual="workflow"] .mock.has-uploaded-screen { background:#e4ece5; } .option[data-visual="workflow"] .uploaded-screen { filter:saturate(.68) contrast(1.12); } .option[data-visual="workflow"] .uploaded-screen::after { background:rgba(38,95,66,.18); } .option[data-visual="quiet"] .mock.has-uploaded-screen { background:#ece6de; } .option[data-visual="quiet"] .uploaded-screen { filter:sepia(.16) saturate(.72) brightness(1.04); } .option[data-visual="quiet"] .uploaded-screen::after { background:rgba(77,62,48,.14); } .option[data-visual="signal"] .mock.has-uploaded-screen { background:#24243a; } .option[data-visual="signal"] .uploaded-screen { filter:grayscale(.1) saturate(1.28) contrast(1.12) brightness(.74); } .option[data-visual="signal"] .uploaded-screen::after { background:rgba(46,40,119,.4); mix-blend-mode:screen; } .option[data-visual="signal"] .uploaded-screen-label,.option[data-visual="signal"] .uploaded-screen-meta { background:rgba(36,36,58,.9); color:#fff; }
+      .mock::-webkit-scrollbar { width:7px; } .mock::-webkit-scrollbar-thumb { background:#bcb5ad; border-radius:8px; } .mock::-webkit-scrollbar-track { background:transparent; }
+      .mock-page-tail { margin:62px -22px -22px; padding:28px 22px 32px; min-height:330px; border-top:1px solid #d9cec1; } .mock-page-tail .tail-eyebrow { display:block; margin-bottom:10px; color:#6e6257; font-size:8px; font-weight:700; letter-spacing:.08em; } .mock-page-tail h4 { margin:0; max-width:245px; font-family:var(--display); font-size:27px; font-weight:500; letter-spacing:-1px; line-height:1; } .mock-page-tail p { max-width:235px; margin:12px 0 20px; color:#625c55; font-size:10px; line-height:1.55; } .mock-page-tail .tail-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; } .mock-page-tail .tail-grid i { display:block; min-height:82px; border:1px solid #c8b9a8; border-radius:4px; background:linear-gradient(145deg,#f7f0e7 0 40%,#ddcbb7 40% 100%); } .product .mock-page-tail { margin-top:76px; border-color:#d3d9d1; background:#e9eee8; } .product .mock-page-tail .tail-eyebrow { color:#48735b; } .product .mock-page-tail h4 { font-family:'DM Sans',sans-serif; font-size:24px; font-weight:700; letter-spacing:-1.1px; } .product .mock-page-tail .tail-grid i { border-color:#d2d8cf; background:linear-gradient(180deg,#fff 0 20%,#dce5d9 20% 100%); }
+      .mock.style-judgment { background:#f0e8df; } .mock.style-workflow { background:#e9efea; } .mock.style-quiet { background:#f3eee7; } .mock.style-signal { background:#24243a; color:#fff; } .decision-list,.workflow-list { display:grid; gap:8px; margin-top:26px; } .decision-list i,.workflow-list i { display:block; padding:11px; border-radius:5px; background:#fff9; font-size:10px; font-style:normal; } .workflow-list i { background:#fff; border:1px solid #d5ddd4; color:#3f6250; } .mock.style-signal .mock-nav,.mock.style-signal .product-hero p { color:#dcd9f4; } .mock.style-signal .product-hero .tag { color:#c3bbff; } .signal-shapes { display:flex; gap:11px; margin-top:28px; } .signal-shapes i { width:58px; height:58px; display:block; border:2px solid #d9d3ff; border-radius:50%; } .signal-shapes i:nth-child(2) { border-radius:2px; background:#8f7be7; border-color:#8f7be7; } .signal-shapes i:nth-child(3) { border-radius:50% 50% 3px 3px; border-color:#ef7869; }
+      .mock.editorial { background:var(--editorial-bg,#f1e9df); } .mock.product { background:var(--product-bg,#eef0eb); }
+      .calibration[data-lens-temperature="neutral"] { --editorial-bg:#eeece6; --product-bg:#e8eceb; } .calibration[data-lens-temperature="neutral"] .mock-cta { background:#8878e7; } .calibration[data-lens-temperature="cool"] { --editorial-bg:#e6edf1; --product-bg:#e4eceb; } .calibration[data-lens-temperature="cool"] .mock-cta { background:#5383a5; }
+      .calibration[data-lens-density="compact"] .mock { padding:15px; } .calibration[data-lens-density="compact"] .mock-hero { margin-top:31px; } .calibration[data-lens-density="compact"] .product-hero { padding-top:19px; } .calibration[data-lens-density="compact"] .mock-hero h3 { font-size:31px; } .calibration[data-lens-density="compact"] .product-hero h3 { font-size:24px; }
+      .calibration[data-lens-contrast="bold"] .mock { color:#171513; } .calibration[data-lens-contrast="bold"] .mock.editorial { background:#e8d9c7; } .calibration[data-lens-contrast="bold"] .mock.product { background:#dbe4d8; } .calibration[data-lens-contrast="bold"] .mock-cta { border-radius:3px; }
+      .mock-nav { display:flex; justify-content:space-between; font-size:10px; letter-spacing:.03em; } .mock-logo { font-family:var(--display); font-size:15px; letter-spacing:-.8px; }
+      .mock-hero { margin:49px 7px 0; } .mock-hero h3 { font-family:var(--display); font-weight:500; font-size:37px; letter-spacing:-1.7px; line-height:.94; max-width:270px; margin:0; } .mock-hero p { font-size:11px; color:#4b4640; max-width:180px; line-height:1.5; margin-top:15px; }
+      .mock-cta { margin-top:16px; display:inline-block; padding:8px 11px; background:var(--coral); color:#fff; border-radius:20px; font-size:10px; }
       .sketch { position:absolute; width:145px; height:114px; right:-16px; bottom:15px; border:1px solid #998d80; border-radius:3px; transform:rotate(-6deg); padding:12px; background:#e7d8c7; } .sketch:after { content:''; display:block; border-top:1px solid #958a7d; width:69px; margin-top:8px; box-shadow:0 9px 0 #958a7d, 0 18px 0 #958a7d; }
       .product .mock-nav { background:#fff; margin:-22px -22px 0; padding:12px 13px; } .product .mock-logo { font-family:'DM Sans'; font-weight:700; font-size:10px; }
       .product-hero { padding-top:30px; } .product-hero .tag { font-size:8px; color:var(--green); font-weight:700; } .product-hero h3 { font-size:27px; letter-spacing:-1.2px; line-height:.98; margin:10px 0 10px; max-width:250px; } .product-hero p { font-size:10px; line-height:1.45; max-width:230px; color:#5a615b; }
       .product-demo { position:absolute; bottom:20px; left:22px; right:22px; height:97px; background:#fff; border:1px solid #d5d8d0; border-radius:7px; padding:10px; display:grid; grid-template-columns:1.1fr .7fr; gap:9px; } .p-lines i { display:block; height:5px; margin:5px 0; background:#d9ded6; border-radius:3px; } .p-lines i:nth-child(2) { width:78%; } .p-lines i:nth-child(3) { width:57%; } .p-chart { background:#e6ecdf; border-radius:4px; position:relative; } .p-chart:after { content:''; position:absolute; width:62px; height:26px; border-bottom:2px solid var(--green); border-right:2px solid var(--green); transform:skewY(-23deg) rotate(-13deg); bottom:25px; left:8px; }
-      .answer-row { display:flex; gap:8px; align-items:center; padding:0 25px 24px; } .answer-row button, .mini-btn { border:1px solid var(--line); background:#fff; border-radius:8px; min-height:37px; padding:0 13px; color:#4e4943; } .answer-row button:hover { border-color:var(--ink); } .answer-row .skip { margin-left:auto; border-color:transparent; color:var(--muted); text-decoration:underline; }
+      .answer-row { display:flex; gap:8px; align-items:center; padding:0 25px 24px; } .answer-row button, .mini-btn { border:1px solid var(--line); background:#fff; border-radius:8px; min-height:37px; padding:0 13px; color:#4e4943; } .answer-row button:hover { border-color:var(--ink); } .answer-row button.active { border-color:var(--lav); background:var(--lav-soft); color:var(--ink); } .answer-row .previous-comparison { margin-left:auto; } .answer-row .next-comparison { border-color:var(--ink); background:var(--ink); color:#fff; font-weight:600; } .answer-row .next-comparison:disabled, .answer-row .previous-comparison:disabled { cursor:not-allowed; opacity:.4; }
       .rail { display:flex; flex-direction:column; gap:14px; } .rail-card { border:1px solid var(--line); border-radius:12px; padding:18px; background:#fff; } .rail-card h3 { font-size:13px; margin:0 0 12px; } .pill { display:inline-flex; align-items:center; gap:5px; font-size:10px; font-weight:700; background:#edf5ee; color:#407050; padding:4px 7px; border-radius:20px; } .pill:before { content:''; background:#5f886f; width:5px; height:5px; border-radius:50%; }
+      .reasoning-card { background:#fcfbf8; } .reasoning-card .eyebrow { font-size:11px; } .reasoning-card h3 { font-family:var(--display); font-weight:500; font-size:26px; line-height:1.05; letter-spacing:-.6px; margin:6px 0 10px; } .reasoning-card > p { color:var(--muted); font-size:14px; line-height:1.5; margin:0 0 16px; }
+      #calibrate .workspace { display:block; } .calibration .reasoning-card { margin:0 25px 22px; padding:18px 0 0; border-width:1px 0 0; border-radius:0; background:transparent; }
+      .principle-options { display:grid; gap:8px; } .principle-option { width:100%; border:1px solid var(--line); border-radius:8px; padding:11px 12px; background:#fff; color:#514b45; font-size:14px; line-height:1.4; text-align:left; } .principle-option:hover { border-color:#a79e94; } .principle-option.active { border-color:var(--lav); background:var(--lav-soft); color:var(--ink); box-shadow:0 0 0 2px #ece9ff; } .principle-option:disabled { cursor:not-allowed; opacity:.55; }
+      .reasoning-note { width:100%; resize:vertical; min-height:78px; margin-top:14px; border:1px solid var(--line); border-radius:8px; padding:11px 12px; color:var(--ink); background:#fff; font:14px/1.45 'DM Sans',sans-serif; } .reasoning-note::placeholder { color:#938b82; }
+      .reasoning-status { margin:10px 0 0; color:var(--muted); font-size:12px; }
       .rule { margin-top:13px; border-left:2px solid var(--coral); padding-left:10px; font-size:12px; line-height:1.5; color:#514b45; } .rule b { color:var(--ink); }
       .ladder-row { display:flex; gap:9px; align-items:center; padding:9px 0; border-top:1px solid var(--line); font-size:12px; } .ladder-row:first-of-type { border:0; } .rank { color:var(--muted); font:10px 'DM Mono',monospace; } .signal { width:6px; height:6px; border-radius:50%; background:var(--lav); } .ladder-row.muted { color:var(--muted); } .ladder-row.muted .signal { background:#c5beb4; }
       .rail-link { display:block; color:var(--ink); background:none; border:0; padding:12px 0 0; font-weight:600; font-size:12px; text-align:left; }
@@ -70,17 +96,27 @@
       .control { margin:0 0 18px; } .control label { display:flex; justify-content:space-between; color:#5f5953; font-size:11px; font-weight:700; margin-bottom:8px; } .control label span { color:var(--muted); font-weight:500; } input[type=range] { width:100%; accent-color:var(--lav); }
       .theme-preview { padding:22px; min-width:0; } .theme-top { display:flex; justify-content:space-between; align-items:center; margin-bottom:17px; } .theme-top h3 { margin:0; font-size:13px; } .theme-top span { color:var(--muted); font-size:11px; }
       .live-site { min-height:224px; background:var(--live-bg,#f2e9df); color:var(--live-ink,#28211c); border-radius:10px; overflow:hidden; padding:17px 22px; transition:.2s ease; } .live-nav { display:flex; justify-content:space-between; font-size:10px; align-items:center; } .live-nav b { font-family:var(--display); font-size:17px; } .live-nav i { width:26px; height:5px; background:var(--live-accent,#f06f5d); border-radius:8px; } .live-copy { display:grid; grid-template-columns:1.2fr .8fr; gap:38px; align-items:end; margin:45px 5% 0; } .live-copy h4 { font:500 31px/.95 var(--display); letter-spacing:-1.5px; margin:0; } .live-copy p { margin:0; font-size:10px; line-height:1.55; } .live-stats { margin:19px 5% 0; display:flex; gap:8px; } .stat { border-top:1px solid color-mix(in srgb, var(--live-ink) 35%, transparent); padding-top:6px; min-width:92px; font-size:9px; } .stat b { display:block; font:500 20px var(--display); }
+      .commit-heading { margin-bottom:26px; } .commit-heading p { max-width:510px; margin:10px 0 0; color:var(--muted); font-size:15px; line-height:1.55; }
+      .commit-layout { display:grid; grid-template-columns:minmax(0,1fr) 345px; gap:25px; align-items:start; } .commit-preview { min-width:0; } .commit-preview-top { display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; } .commit-preview-top b { font-size:13px; } .commit-preview-top span { color:var(--muted); font-size:11px; }
+      .commit-site { min-height:720px; border-radius:var(--commit-radius,12px); background:var(--commit-bg,#f2e9df); color:var(--commit-ink,#28211c); overflow:hidden; padding:24px 28px; transition:.2s ease; } .commit-site .live-nav { font-size:11px; } .commit-site .live-nav b { font-size:21px; } .commit-site .live-nav i { background:var(--commit-accent,#e3705e); } .commit-site .live-copy { margin-top:92px; } .commit-site .live-copy h4 { font-size:47px; } .commit-site .live-copy p { font-size:12px; max-width:220px; } .commit-site .live-stats { margin-top:35px; } .commit-site .stat { font-size:10px; min-width:110px; } .commit-site .stat b { font-size:23px; } .commit-proof { margin:72px 5% 0; padding-top:18px; border-top:1px solid color-mix(in srgb, var(--commit-ink) 25%, transparent); display:grid; grid-template-columns:1fr 1.1fr; gap:30px; } .commit-proof h5 { margin:0; font:500 28px/1 var(--display); letter-spacing:-1px; } .commit-proof p { margin:9px 0 0; font-size:11px; line-height:1.55; } .commit-flow { display:grid; grid-template-columns:repeat(3,1fr); gap:7px; align-self:end; } .commit-flow i { display:block; height:86px; border:1px solid color-mix(in srgb, var(--commit-ink) 25%, transparent); border-radius:5px; background:color-mix(in srgb, var(--commit-bg) 65%, #fff); } .commit-quote { margin:62px 5% 0; padding:24px; border-radius:8px; background:color-mix(in srgb, var(--commit-ink) 8%, transparent); } .commit-quote p { max-width:480px; margin:0; font:500 26px/1.07 var(--display); letter-spacing:-.7px; } .commit-quote span { display:block; margin-top:14px; font-size:10px; }
+      .token-panel { border:1px solid var(--line); border-radius:14px; padding:0; background:#fff; overflow:hidden; } .token-panel-head { padding:17px 18px 12px; border-bottom:1px solid var(--line); } .token-panel h2 { font-size:21px; margin:4px 0 0; } .token-tabs { display:flex; gap:4px; padding:10px 12px; border-bottom:1px solid var(--line); } .token-tab { border:0; border-radius:7px; padding:7px 9px; background:transparent; color:var(--muted); font-size:11px; } .token-tab.active { background:var(--lav-soft); color:var(--ink); font-weight:700; } .token-groups { padding:8px 12px 12px; } .token-group[hidden] { display:none; } .token-group-title { display:block; margin:5px 0 8px; color:#716a62; font-size:10px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; } .token-control { margin:0 0 10px; } .token-control label { display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; color:#5f5953; font-size:11px; font-weight:700; } .token-control output { color:var(--muted); font-weight:500; } .token-color { display:flex; align-items:center; gap:9px; border:1px solid var(--line); border-radius:7px; padding:5px 8px; color:var(--muted); font:11px 'DM Mono',monospace; } .token-color input { width:23px; height:23px; padding:0; border:0; background:none; } .token-action-row { display:grid; gap:8px; padding:12px; border-top:1px solid var(--line); } .commit-action { width:100%; border:0; min-height:40px; border-radius:7px; background:var(--ink); color:#fff; font-weight:600; } .commit-action.secondary { border:1px solid var(--line); background:#fff; color:var(--ink); } .export-deliverables { padding:12px; border-top:1px solid var(--line); background:#faf9f6; } .export-deliverables[hidden] { display:none; } .export-deliverables p { margin:4px 0 10px; color:var(--muted); font-size:11px; line-height:1.45; } .export-file { display:flex; justify-content:space-between; align-items:center; padding:9px 0; border-top:1px solid var(--line); font-size:12px; } .export-file b { display:block; } .export-file span { color:var(--muted); font-size:10px; }
+      #export.visible { width:100vw; min-height:calc(100vh - 64px); margin: -44px 0 -80px calc(50% - 50vw); } #export .commit-layout { height:calc(100vh - 64px); grid-template-columns:minmax(0,1fr) 330px; gap:0; align-items:stretch; border:0; border-radius:0; overflow:hidden; background:#fff; } #export .commit-preview { min-height:0; overflow:hidden; } #export .commit-site { box-sizing:border-box; height:calc(100vh - 64px); min-height:0; overflow-y:auto; overscroll-behavior:contain; scrollbar-width:thin; scrollbar-color:#9e978f transparent; border-radius:0; padding:34px 48px; } #export .commit-site::-webkit-scrollbar { width:9px; } #export .commit-site::-webkit-scrollbar-thumb { border:3px solid transparent; border-radius:9px; background:#9e978f; background-clip:content-box; } #export .token-panel { min-width:0; border:0; border-left:1px solid var(--line); border-radius:0; overflow-y:auto; }
+      .commit-site[data-density="compact"] .live-copy { margin-top:62px; } .commit-site[data-density="compact"] .commit-proof { margin-top:45px; } .commit-site[data-contrast="bold"] .commit-proof { border-top-width:2px; } .commit-site[data-direction="product"] .live-copy h4 { font-family:'DM Sans',sans-serif; font-weight:700; letter-spacing:-2px; } .commit-site[data-direction="product"] .commit-quote { border-left:4px solid var(--commit-accent); }
+      .calibration .mock.style-signal { background:#24243a !important; color:#fff; } .calibration .mock.style-signal .mock-nav { background:#24243a; color:#f8f7ff; border-bottom:1px solid #4a4863; } .calibration .mock.style-signal .mock-nav .mock-logo { color:#fff; } .mock.style-signal .product-hero h3 { color:#fff; } .mock.style-signal .product-hero p { color:#eeeaff; } .mock.style-signal .mock-nav { color:#f0edff; } .mock.style-signal .product-hero .tag { color:#cfc8ff; } .mock.style-signal .mock-page-tail { color:#27243d; } @media (prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto !important; animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; } }
       .toast { position:fixed; right:28px; bottom:26px; border-radius:10px; color:#fff; background:var(--ink); padding:13px 16px; transform:translateY(80px); opacity:0; transition:.25s ease; font-size:13px; box-shadow:0 10px 25px #0002; } .toast.show { transform:translateY(0); opacity:1; }
       .mode { display:none; } .mode.visible { display:block; }
       .continue-row { display:flex; justify-content:flex-end; align-items:center; gap:14px; margin:23px 0 0; } .continue-row span { color:var(--muted); font-size:12px; } .continue-btn { border:0; min-height:43px; padding:0 16px; background:var(--ink); color:#fff; border-radius:8px; font-weight:600; } .continue-btn:hover { background:#403a35; }
+      .continue-btn:disabled { cursor:not-allowed; opacity:.45; } .continue-btn:disabled:hover { background:var(--ink); }
       .context-intro { max-width:650px; margin:7px 0 27px; color:var(--muted); font-size:16px; line-height:1.55; }
       .brief-card { background:#fff; border:1px solid var(--line); border-radius:14px; padding:24px; margin-bottom:27px; }
+      .context-form { margin-top:28px; padding:24px; border:1px solid var(--line); border-radius:14px; background:#fff; } .context-form-intro { display:flex; justify-content:space-between; align-items:end; gap:20px; margin-bottom:20px; } .context-form-intro h2 { margin:4px 0 0; } .context-form-intro p { max-width:390px; margin:0; color:var(--muted); font-size:13px; line-height:1.5; } .context-form-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px 18px; } .context-field { display:grid; gap:7px; } .context-field.wide { grid-column:1 / -1; } .context-field label { font-size:12px; font-weight:700; color:#433e38; } .context-field small { color:var(--muted); font-size:11px; line-height:1.35; } .context-field input,.context-field textarea { box-sizing:border-box; width:100%; border:1px solid var(--line); border-radius:8px; background:#fcfbf8; padding:10px 11px; color:var(--ink); font:13px/1.45 'DM Sans',sans-serif; } .context-field textarea { min-height:76px; resize:vertical; } .context-form .continue-row { margin:22px 0 0; }
       .brief-top { display:flex; justify-content:space-between; align-items:start; gap:20px; margin-bottom:20px; } .brief-top h2 { margin:5px 0 0; }
       .edit-brief { border:0; background:transparent; color:var(--muted); text-decoration:underline; padding:5px 0; font-size:12px; }
       .brief-grid { display:grid; grid-template-columns:1.25fr 1fr 1fr; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
       .brief-item { padding:17px 18px 17px 0; margin-right:18px; border-right:1px solid var(--line); } .brief-item:last-child { border-right:0; margin-right:0; } .brief-item b { display:block; margin:6px 0 4px; font-size:13px; } .brief-item p { color:var(--muted); font-size:12px; line-height:1.45; margin:0; }
       .brief-foot { display:flex; gap:9px; align-items:center; margin-top:16px; font-size:12px; color:#544e47; } .brief-foot i { font-style:normal; color:var(--green); font-weight:700; }
       .preview-heading { display:flex; align-items:end; justify-content:space-between; gap:20px; margin:30px 0 15px; } .preview-heading h2 { margin:4px 0 0; } .preview-heading p { color:var(--muted); font-size:12px; line-height:1.45; max-width:350px; margin:0; }
+      .selection-instruction { display:block; margin:-4px 0 14px; color:var(--muted); font-size:12px; }
       .screen-grid { display:grid; grid-template-columns:repeat(4, 1fr); gap:13px; }
       .screen-card { border:1px solid var(--line); border-radius:11px; background:#fff; padding:7px; text-align:left; transition:.18s ease; min-width:0; } .screen-card:hover { transform:translateY(-2px); border-color:#bdb4aa; } .screen-card.selected-screen { border:1.5px solid var(--lav); box-shadow:0 0 0 3px var(--lav-soft); }
       .screen-thumb { height:128px; border-radius:7px; padding:10px; overflow:hidden; position:relative; } .screen-thumb.hero-thumb { background:#f1e8de; } .screen-thumb.lab-thumb { background:#edf0ea; } .screen-thumb.commit-thumb { background:#eeeafd; } .screen-thumb.upload-thumb { background:#faf9f6; border:1px dashed #cfc7bc; display:grid; place-items:center; color:var(--muted); }
@@ -89,6 +125,7 @@
       .tiny-export { background:#fff; margin:17px 10px 0; height:79px; border-radius:5px; padding:9px; box-shadow:0 5px 12px #372d5212; } .tiny-export b { font:500 11px var(--display); } .tiny-export i { display:block; height:4px; background:#ddd8f5; border-radius:3px; margin-top:7px; } .tiny-export i:nth-child(3) { width:75%; } .tiny-check { position:absolute; width:21px; height:21px; border-radius:50%; background:var(--lav); color:white; right:10px; bottom:9px; display:grid; place-items:center; font-size:11px; }
       .upload-icon { font-size:23px; line-height:1; } .upload-copy { font-size:11px; text-align:center; line-height:1.35; margin-top:6px; } .screen-copy { padding:10px 5px 5px; } .screen-copy b { font-size:12px; display:block; } .screen-copy span { color:var(--muted); font-size:10px; display:block; margin-top:2px; } .chosen { color:var(--lav); font-size:10px; font-weight:700; }
       .curation-tools { display:flex; justify-content:space-between; gap:18px; align-items:center; border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:13px 0; margin:0 0 20px; } .filter-set { display:flex; gap:7px; flex-wrap:wrap; } .filter { border:1px solid var(--line); background:#fff; border-radius:20px; min-height:29px; padding:0 10px; color:var(--muted); font-size:11px; } .filter.active { background:var(--ink); border-color:var(--ink); color:#fff; } .signal-count { color:var(--muted); font-size:12px; white-space:nowrap; } .signal-count b { color:var(--ink); }
+      .filter-controls { display:flex; align-items:end; gap:18px; flex-wrap:wrap; } .filter-group-label { display:block; margin:0 0 6px; color:var(--muted); font-size:10px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; } .view-switch { display:flex; gap:4px; } .view-choice { min-height:30px; border:1px solid var(--line); border-radius:7px; padding:0 10px; color:var(--muted); background:#fff; font-size:11px; } .view-choice.active { background:var(--ink); border-color:var(--ink); color:#fff; } .style-picker select { appearance:none; min-height:30px; border:1px solid var(--line); border-radius:7px; padding:0 28px 0 10px; color:#4e4943; background:#fff; font:11px 'DM Sans',sans-serif; }
       .inspiration-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; } .inspiration { border:1px solid var(--line); background:#fff; border-radius:11px; overflow:hidden; position:relative; text-align:left; min-width:0; } .inspiration-preview { height:170px; position:relative; overflow:hidden; } .inspiration-meta { padding:11px 12px 12px; display:flex; justify-content:space-between; gap:8px; align-items:center; } .inspiration-meta b { font-size:12px; } .inspiration-meta span { font-size:10px; color:var(--muted); }
       .inspiration-preview:before,.inspiration-preview:after { content:''; position:absolute; } .ref-paper { background:#e8e0d4; } .ref-paper:before { left:21px; top:24px; width:145px; height:90px; background:#f6f0e9; box-shadow:31px 26px 0 #d2bca7; transform:rotate(-6deg); } .ref-paper:after { left:37px; top:48px; width:92px; height:2px; background:#594638; box-shadow:0 10px 0 #594638,0 20px 0 #594638; }
       .ref-grid { background:#e6e8df; } .ref-grid:before { inset:18px; background:repeating-linear-gradient(90deg,#f5f5ef 0 42px,#cbd2c4 43px 44px),repeating-linear-gradient(0deg,transparent 0 36px,#cbd2c4 37px 38px); border:1px solid #bbc3b4; } .ref-grid:after { height:48px; width:48px; border-radius:50%; background:#829b70; right:29px; bottom:27px; }
@@ -119,63 +156,55 @@
       .style-mono { background:#eee; color:#111; } .style-mono h4 { font:800 29px/.8 'DM Sans'; text-transform:uppercase; } .style-mono .demo-cta { color:#fff; background:#111; border-radius:0; } .style-mono:after { content:''; position:absolute; width:108px; height:108px; border-radius:50%; right:-20px; bottom:-33px; background:#111; }
       /* Every gallery card has a stable preview and footer rhythm. */
       .style-card { min-height:340px; display:flex; flex-direction:column; }
+      .style-card[hidden] { display:none; }
       .style-demo { flex:0 0 210px; }
       .style-info { margin-top:auto; min-height:130px; border-top:1px solid var(--line); padding:14px; display:flex; flex-direction:column; }
       .style-info p { margin-top:8px; }
       .style-card:hover .curate-actions,.style-card:focus-within .curate-actions { opacity:1; }
       .distilling { min-height:560px; display:grid; place-items:center; text-align:center; } .distill-card { width:min(520px,100%); padding:43px 35px; border:1px solid var(--line); border-radius:16px; background:#fff; } .distill-orbit { width:70px; height:70px; margin:0 auto 24px; position:relative; border:1px solid #dcd5cc; border-radius:50%; animation:turn 3s linear infinite; } .distill-orbit:before,.distill-orbit:after { content:''; position:absolute; border-radius:50%; } .distill-orbit:before { width:16px; height:16px; background:var(--coral); top:-7px; left:27px; } .distill-orbit:after { width:10px; height:10px; background:var(--lav); bottom:3px; right:3px; } .distill-card h2 { font-size:32px; margin:0; } .distill-card p { max-width:350px; margin:12px auto 23px; color:var(--muted); line-height:1.55; } .distill-steps { text-align:left; border-top:1px solid var(--line); padding-top:15px; display:grid; gap:9px; color:#5d5750; font-size:12px; } .distill-steps span:before { content:'✓'; display:inline-grid; place-items:center; width:17px; height:17px; border-radius:50%; background:#eaf3ec; color:var(--green); margin-right:8px; font-weight:700; } .distill-steps span:last-child:before { content:''; background:var(--lav); animation:pulse 1s ease-in-out infinite alternate; } @keyframes turn { to { transform:rotate(360deg); } } @keyframes pulse { to { opacity:.35; transform:scale(.7); } }
-      @media (max-width:900px) { .app { grid-template-columns:1fr; } .side { position:relative; height:auto; border-right:0; border-bottom:1px solid var(--line); padding:15px; } .brand { padding:0 8px 12px; } .project,.nav-label,.side-foot { display:none; } .side nav { display:flex; overflow:auto; } .step { width:auto; white-space:nowrap; } .topbar { padding:0 20px; } .page { padding:30px 20px 50px; } .workspace { grid-template-columns:1fr; } .rail { display:grid; grid-template-columns:1fr 1fr; } .screen-grid,.inspiration-grid,.style-gallery { grid-template-columns:repeat(2,1fr); } }
-      @media (max-width:620px) { h1 { font-size:35px; } .heading { display:block; } .heading p { margin-top:15px; } .pair,.theme-drawer,.brief-grid,.screen-grid,.inspiration-grid,.style-gallery { grid-template-columns:1fr; } .theme-controls { border-right:0; border-bottom:1px solid var(--line); } .rail { display:block; } .rail-card { margin-top:14px; } .prompt { display:block; } .prompt span { margin-top:6px; } .app { overflow:hidden; } .brief-item { border-right:0; border-bottom:1px solid var(--line); margin:0; padding:14px 0; } .brief-item:last-child { border-bottom:0; } .curation-tools { align-items:flex-start; flex-direction:column; } }
+      @media (max-width:900px) { .topbar { padding:12px 20px; gap:16px; flex-wrap:wrap; } .top-stepper { order:3; flex:1 0 100%; justify-content:flex-start; overflow:auto; padding-bottom:2px; } .theme-lens { grid-template-columns:1fr; gap:15px; } .commit-layout { grid-template-columns:1fr; } #export .commit-layout { grid-template-columns:1fr; } #export .token-panel { border-left:0; border-top:1px solid var(--line); } .page { padding:30px 20px 50px; } .workspace { grid-template-columns:1fr; } .rail { display:grid; grid-template-columns:1fr 1fr; } .screen-grid,.inspiration-grid,.style-gallery { grid-template-columns:repeat(2,1fr); } }
+      @media (max-width:620px) { .topbar { align-items:center; } .crumb { max-width:150px; } .top-stepper .step { padding:8px 9px; } h1 { font-size:35px; } .heading { display:block; } .heading p { margin-top:15px; } .lens-controls,.pair,.theme-drawer,.brief-grid,.screen-grid,.inspiration-grid,.style-gallery,.context-form-grid { grid-template-columns:1fr; } .context-field.wide { grid-column:auto; } .context-form-intro { display:block; } .context-form-intro p { margin-top:12px; } .commit-site { padding:18px; min-height:330px; } .commit-site .live-copy { margin-top:65px; grid-template-columns:1fr; gap:18px; } .commit-site .live-copy h4 { font-size:38px; } .theme-controls { border-right:0; border-bottom:1px solid var(--line); } .rail { display:block; } .rail-card { margin-top:14px; } .prompt { display:block; } .prompt span { margin-top:6px; } .own-screen-tool,.own-screen-actions { align-items:stretch; flex-direction:column; } .own-screen-tool .screen-status { order:-1; } .app { overflow:hidden; } .brief-item { border-right:0; border-bottom:1px solid var(--line); margin:0; padding:14px 0; } .brief-item:last-child { border-bottom:0; } .curation-tools { align-items:flex-start; flex-direction:column; } }
     </style>
   </head>
   <body>
     <div class="app">
-      <aside class="side">
-        <div class="brand"><i class="brand-mark"></i>Gloss</div>
-        <div class="project"><div class="project-label">Current project</div><strong>Gloss marketing site</strong><span>Landing page · New design</span></div>
-        <div class="nav-label eyebrow">Visual system</div>
-        <nav>
-          <button class="step active" data-tab="board"><i class="step-dot">1</i> Context &amp; board</button>
-          <button class="step" data-tab="curation-expanded"><i class="step-dot">2</i> Curation</button>
-          <button class="step" data-tab="calibrate"><i class="step-dot">3</i> Calibrate</button>
-          <button class="step" data-tab="theme"><i class="step-dot">4</i> Tune theme</button>
-          <button class="step" data-tab="export"><i class="step-dot">5</i> Commit</button>
-        </nav>
-        <div class="side-foot"><b>Decision memory</b>3 signals confirmed<br />Ready for agent context</div>
-      </aside>
       <main>
-        <header class="topbar"><div class="crumb"><b>Gloss</b> / <span id="stage-name">Visual system</span></div><div class="progress"><span id="progress-label">3 of 5</span><div class="progress-bar"><i id="progress-fill"></i></div></div></header>
+        <header class="topbar">
+          <div class="topbar-brand"><div class="brand"><i class="brand-mark"></i>Gloss</div><div class="crumb" title="Gloss marketing site">Gloss marketing site</div></div>
+          <nav class="top-stepper" aria-label="Visual system stages">
+          <button class="step active" data-tab="board"><i class="step-dot">1</i> Contextualize</button>
+          <button class="step" data-tab="curation-expanded"><i class="step-dot">2</i> Curate</button>
+          <button class="step" data-tab="calibrate"><i class="step-dot">3</i> Calibrate</button>
+          <button class="step" data-tab="export"><i class="step-dot">4</i> Commit</button>
+          </nav>
+        </header>
         <div class="page">
           <section class="mode" id="distilling" aria-live="polite"><div class="distilling"><div class="distill-card"><div class="distill-orbit"></div><div class="eyebrow">Gloss is working</div><h2>Distilling your<br />visual system.</h2><p>We’re interpreting your references, anti-references, and product context into a set of visual tensions you can calibrate.</p><div class="distill-steps"><span>Reading the visual signals</span><span>Identifying useful contrasts</span><span>Preparing calibration prompts</span></div></div></div></section>
           <section class="mode" id="calibrate">
-            <div class="heading"><div><div class="eyebrow">Calibration · design judgment</div><h1>Teach the AI what<br />“right” looks like.</h1></div><p>Choose between controlled directions for the Gloss landing page. We isolate one decision at a time, so your preference becomes reusable guidance.</p></div>
+            <div class="heading"><div><div class="eyebrow">Calibrate</div><h1>Test the judgment<br />in its real context.</h1></div><p>Adjust a few shared theme lenses, then compare the underlying direction. Save the principle that still feels right, not a single frozen screen.</p></div>
             <div class="context"><div class="context-symbol">G</div><div class="context-copy"><b>Building context understood.</b> Gloss helps AI builders turn visual judgment into durable instructions for their coding agent. The landing page needs to feel considered, useful, and human—not like a generic SaaS product. <button>Review context</button></div></div>
+            <section class="theme-lens" aria-label="Shared theme lenses"><div><div class="eyebrow">Shared theme lenses</div><h2>Test both directions.</h2><p>These controls apply to A and B together, so you can separate a durable decision from a styling preference.</p></div><div class="lens-controls"><div class="lens-control"><label>Density <span id="density-out">Airy</span></label><input id="lens-density" type="range" min="0" max="100" value="72" /></div><div class="lens-control"><label>Color <span id="temperature-out">Warm</span></label><input id="lens-temperature" type="range" min="0" max="100" value="68" /></div><div class="lens-control"><label>Contrast <span id="contrast-out">Soft</span></label><input id="lens-contrast" type="range" min="0" max="100" value="43" /></div></div></section>
             <div class="workspace">
-              <div class="calibration">
+              <div class="calibration" id="calibration-area" data-lens-density="airy" data-lens-temperature="warm" data-lens-contrast="soft">
                 <div class="cal-head"><div><div class="eyebrow">Tension 01 · proof versus mood</div><h2>How should Gloss make its value clear?</h2></div><div class="counter">01 / 03</div></div>
                 <div class="prompt"><div><strong>Pick the direction that feels more like Gloss.</strong><span>Both options use the same story. Only the presentation changes.</span></div><span class="pill">One decision only</span></div>
                 <div class="pair">
                   <button class="option" data-choice="A"><div class="option-bar"><i class="letter">A</i><b>Editorial invitation</b><span>mood leads</span></div><div class="mock editorial"><div class="mock-nav"><b class="mock-logo">Gloss</b><span>How it works &nbsp; About</span></div><div class="mock-hero"><h3>Your taste is already a design system.</h3><p>Turn what you see into direction an AI can carry into every screen.</p><i class="mock-cta">Find your point of view</i></div><i class="sketch"></i></div></button>
                   <button class="option" data-choice="B"><div class="option-bar"><i class="letter">B</i><b>Product demonstration</b><span>proof leads</span></div><div class="mock product"><div class="mock-nav"><b class="mock-logo">✦ GLOSS</b><span>Sign in</span></div><div class="product-hero"><span class="tag">DESIGN MEMORY FOR AI BUILDERS</span><h3>Make visual judgment executable.</h3><p>Curate references, settle trade-offs, and export the system your agent should follow.</p></div><div class="product-demo"><div class="p-lines"><i></i><i></i><i></i></div><div class="p-chart"></div></div></div></button>
                 </div>
-                <div class="answer-row"><button data-answer="Both work">Both work</button><button data-answer="Neither">Neither</button><button class="skip" data-answer="Skipped">Skip for now</button></div>
+                <div class="answer-row"><button data-answer="Both work">Both work</button><button data-answer="Neither">Neither</button></div>
               </div>
               <aside class="rail">
-                <div class="rail-card"><div class="eyebrow">Active direction</div><h3 style="font-family:var(--display);font-size:20px;font-weight:500;letter-spacing:-.5px;margin:5px 0 2px">Quiet conviction</h3><span class="pill">Strong match</span><div class="rule"><b>Presence through restraint.</b><br />Use type and space before decorative treatment.</div></div>
+                <div class="rail-card reasoning-card"><div class="eyebrow">Decision reasoning</div><h3 id="reasoning-title">Make a choice to generate a principle.</h3><p id="reasoning-copy">Gloss will turn your preference into a reusable rule, then ask whether it captures what you mean.</p><div class="principle-options" id="principle-options"><button class="principle-option" disabled>Choose A or B to see candidate principles.</button></div><textarea class="reasoning-note" id="reasoning-note" placeholder="Add nuance: what made this direction feel right, or what should the AI watch for?"></textarea><p class="reasoning-status" id="reasoning-status">Your note will be stored with this decision.</p></div>
                 <div class="rail-card"><h3>Preference ladder</h3><div class="ladder-row"><i class="rank">01</i><i class="signal"></i><b>Quiet conviction</b></div><div class="ladder-row"><i class="rank">02</i><i class="signal"></i><span>Warm studio</span></div><div class="ladder-row muted"><i class="rank">03</i><i class="signal"></i><span>Graphic utility</span></div><button class="rail-link">Compare directions →</button></div>
                 <div class="rail-card"><div class="eyebrow">Evidence</div><p style="color:var(--muted);font-size:12px;line-height:1.5;margin:7px 0 0">Your board favors calm editorial references but rejects decoration without product proof.</p></div>
               </aside>
             </div>
-            <section class="theme-drawer" id="theme-panel">
-              <div class="theme-controls"><div class="eyebrow">Theme studio</div><h3>Tune the expression,<br />not the intent.</h3><div class="control"><label>Temperature <span id="temp-out">Warm</span></label><input id="temperature" type="range" min="0" max="100" value="68" /></div><div class="control"><label>Density <span id="density-out">Airy</span></label><input id="density" type="range" min="0" max="100" value="72" /></div><div class="control"><label>Contrast <span id="contrast-out">Soft</span></label><input id="contrast" type="range" min="0" max="100" value="43" /></div></div>
-              <div class="theme-preview"><div class="theme-top"><h3>Gloss landing page · live preview</h3><span>Changes preserve “Quiet conviction”</span></div><div class="live-site" id="live-site"><div class="live-nav"><b>Gloss</b><span>How it works &nbsp;&nbsp; Manifesto &nbsp;&nbsp; Sign in</span><i></i></div><div class="live-copy"><h4>Give your agent<br />a point of view.</h4><p>Gloss turns the visual choices you can feel into the design principles your agent can apply.</p></div><div class="live-stats"><div class="stat"><b>01</b>Curate signals</div><div class="stat"><b>02</b>Choose trade-offs</div><div class="stat"><b>03</b>Build with memory</div></div></div></div>
-            </section>
-            <div class="continue-row"><span>Calibration and theme tuning inform each other. Move between them freely.</span><button class="continue-btn" data-iterate="theme">Open theme studio →</button></div>
+            <div class="continue-row"><span>Each saved judgment gives your agent clearer principles for making future design decisions and trade-offs.</span><button class="continue-btn" data-complete="calibrate">Save direction &amp; review →</button></div>
           </section>
-          <section class="mode visible" id="board"><div class="eyebrow">Project context</div><h1>Start with what you’re building.</h1><p class="context-intro">Gloss uses the product situation to make visual choices useful. This case study is a landing page that explains what Gloss does, makes the workflow concrete, and earns a first try.</p><div class="brief-card"><div class="brief-top"><div><div class="eyebrow">What Gloss knows</div><h2>Gloss marketing site</h2></div><button class="edit-brief">Edit context</button></div><div class="brief-grid"><div class="brief-item"><div class="eyebrow">Product summary</div><b>Design memory for AI builders</b><p>A visual-system plugin that turns references and judgment into instructions an implementation agent can use.</p></div><div class="brief-item"><div class="eyebrow">Target users</div><b>AI-native builders</b><p>People with visual taste who are building real products but do not have design vocabulary or a system yet.</p></div><div class="brief-item"><div class="eyebrow">Landing-page job</div><b>Make the loop believable</b><p>Explain curate → calibrate → commit, then invite a builder to bring in their own project.</p></div></div><div class="brief-foot"><i>✓</i> Constraints: desktop first · no existing brand system · value needs to be clear before it becomes aesthetic</div></div><div class="preview-heading"><div><div class="eyebrow">Representative product moments</div><h2>Which screen should define the visual system?</h2></div><p>We will use the selected screen to preview each direction and theme. Add a screenshot if the screen that matters is not listed.</p></div><div class="screen-grid"><button class="screen-card selected-screen" data-screen="Hero: how Gloss works"><div class="screen-thumb hero-thumb"><div class="tiny-nav"><b class="tiny-logo">Gloss</b><span>How it works</span></div><div class="tiny-h1">Give your agent a point of view.</div><i class="tiny-button"></i><i class="tiny-check">✓</i></div><div class="screen-copy"><b>Hero: how Gloss works</b><span class="chosen">Selected for preview</span></div></button><button class="screen-card" data-screen="Taste Lab: compare directions"><div class="screen-thumb lab-thumb"><div class="tiny-nav"><b class="tiny-logo">GLOSS</b><span>01 / 03</span></div><div class="tiny-lab"><i></i><i></i><div class="tiny-pair"><b></b><b></b></div></div></div><div class="screen-copy"><b>Taste Lab: compare directions</b><span>Make the interaction tangible</span></div></button><button class="screen-card" data-screen="Commit: agent-ready brief"><div class="screen-thumb commit-thumb"><div class="tiny-nav"><b class="tiny-logo">Gloss</b><span>Ready</span></div><div class="tiny-export"><b>Design direction</b><i></i><i></i><i></i></div></div><div class="screen-copy"><b>Commit: agent-ready brief</b><span>Show the final payoff</span></div></button><button class="screen-card" id="upload-screen"><div class="screen-thumb upload-thumb"><div><div class="upload-icon">＋</div><div class="upload-copy">Upload a screen<br />to preview</div></div></div><div class="screen-copy"><b>Your product screen</b><span>PNG, JPG, or Figma export</span></div></button></div><div class="continue-row"><span>Choose the representative screen Gloss should use for exploration.</span><button class="continue-btn" data-complete="board">Continue to curation →</button></div></section>
+          <section class="mode visible" id="board"><div class="eyebrow">Project context</div><h1>Start with what you’re building.</h1><div class="brief-card"><div class="brief-top"><div><div class="eyebrow">What Gloss knows</div><h2>Gloss marketing site</h2></div><button class="edit-brief">Edit context</button></div><div class="brief-grid"><div class="brief-item"><div class="eyebrow">Product summary</div><b>Design memory for AI builders</b><p>A visual-system plugin that turns references and judgment into instructions an implementation agent can use.</p></div><div class="brief-item"><div class="eyebrow">Target users</div><b>AI-native builders</b><p>People with visual taste who are building real products but do not have design vocabulary or a system yet.</p></div><div class="brief-item"><div class="eyebrow">Landing-page job</div><b>Make the loop believable</b><p>Explain curate → calibrate → commit, then invite a builder to bring in their own project.</p></div></div><div class="brief-foot"><i>✓</i> Constraints: desktop first · no existing brand system · value needs to be clear before it becomes aesthetic</div></div><div class="preview-heading"><div><div class="eyebrow">Representative product moments</div><h2>Which screen should define the visual system?</h2></div></div><div class="screen-grid"><button class="screen-card selected-screen" data-screen="Hero: how Gloss works"><div class="screen-thumb hero-thumb"><div class="tiny-nav"><b class="tiny-logo">Gloss</b><span>How it works</span></div><div class="tiny-h1">Give your agent a point of view.</div><i class="tiny-button"></i><i class="tiny-check">✓</i></div><div class="screen-copy"><b>Hero: how Gloss works</b><span class="chosen">Selected for preview</span></div></button><button class="screen-card" data-screen="Taste Lab: compare directions"><div class="screen-thumb lab-thumb"><div class="tiny-nav"><b class="tiny-logo">GLOSS</b><span>01 / 03</span></div><div class="tiny-lab"><i></i><i></i><div class="tiny-pair"><b></b><b></b></div></div></div><div class="screen-copy"><b>Taste Lab: compare directions</b><span>Make the interaction tangible</span></div></button><button class="screen-card" data-screen="Commit: agent-ready brief"><div class="screen-thumb commit-thumb"><div class="tiny-nav"><b class="tiny-logo">Gloss</b><span>Ready</span></div><div class="tiny-export"><b>Design direction</b><i></i><i></i><i></i></div></div><div class="screen-copy"><b>Commit: agent-ready brief</b><span>Show the final payoff</span></div></button><button class="screen-card" id="upload-screen"><div class="screen-thumb upload-thumb"><div><div class="upload-icon">＋</div><div class="upload-copy">Upload a screen<br />to preview</div></div></div><div class="screen-copy"><b>Your product screen</b><span>PNG, JPG, or Figma export</span></div></button></div><div class="continue-row"><span>Choose the representative screen Gloss should use for exploration.</span><button class="continue-btn" data-complete="board">Continue to curation →</button></div></section>
           <section class="mode" id="curation"><div class="heading"><div><div class="eyebrow">Curation · visual evidence</div><h1>Collect the signals<br />you want the AI to keep.</h1></div><p>Reference images tell Gloss what to carry forward. Anti-references are equally useful: they name a direction the visual system should deliberately avoid.</p></div><div class="curation-tools"><div class="filter-set"><button class="filter active">All 12</button><button class="filter">Editorial</button><button class="filter">Product UI</button><button class="filter">Typography</button><button class="filter">Saved</button></div><div class="signal-count"><b id="reference-count">3</b> references · <b id="anti-count">1</b> anti-reference</div></div><div class="inspiration-grid"><article class="inspiration is-reference" data-curation-card><div class="inspiration-preview ref-paper"></div><div class="curate-actions"><button class="curate-action include" data-reaction="reference"><i>✓</i> Reference</button><button class="curate-action anti" data-reaction="anti"><i>×</i> Anti-reference</button></div><div class="inspiration-meta"><div><b>Quiet editorial</b><span>Warm paper · deliberate type</span></div><i class="decision-badge">✓ Reference</i></div></article><article class="inspiration" data-curation-card><div class="inspiration-preview ref-grid"></div><div class="curate-actions"><button class="curate-action include" data-reaction="reference"><i>✓</i> Reference</button><button class="curate-action anti" data-reaction="anti"><i>×</i> Anti-reference</button></div><div class="inspiration-meta"><div><b>Systematic calm</b><span>Grid · utility without noise</span></div><i class="decision-badge"></i></div></article><article class="inspiration is-reference" data-curation-card><div class="inspiration-preview ref-type"></div><div class="curate-actions"><button class="curate-action include" data-reaction="reference"><i>✓</i> Reference</button><button class="curate-action anti" data-reaction="anti"><i>×</i> Anti-reference</button></div><div class="inspiration-meta"><div><b>Human typography</b><span>Character used selectively</span></div><i class="decision-badge">✓ Reference</i></div></article><article class="inspiration" data-curation-card><div class="inspiration-preview ref-soft"></div><div class="curate-actions"><button class="curate-action include" data-reaction="reference"><i>✓</i> Reference</button><button class="curate-action anti" data-reaction="anti"><i>×</i> Anti-reference</button></div><div class="inspiration-meta"><div><b>Soft geometry</b><span>Friendly, not childish</span></div><i class="decision-badge"></i></div></article><article class="inspiration is-reference" data-curation-card><div class="inspiration-preview ref-dense"></div><div class="curate-actions"><button class="curate-action include" data-reaction="reference"><i>✓</i> Reference</button><button class="curate-action anti" data-reaction="anti"><i>×</i> Anti-reference</button></div><div class="inspiration-meta"><div><b>Product proof</b><span>Interface leads the story</span></div><i class="decision-badge">✓ Reference</i></div></article><article class="inspiration is-anti" data-curation-card><div class="inspiration-preview ref-glossy"></div><div class="curate-actions"><button class="curate-action include" data-reaction="reference"><i>✓</i> Reference</button><button class="curate-action anti" data-reaction="anti"><i>×</i> Anti-reference</button></div><div class="inspiration-meta"><div><b>Glossy SaaS</b><span>Generic gradient confidence</span></div><i class="decision-badge">× Anti-reference</i></div></article></div><div class="continue-row"><span>Include at least two references and one anti-reference to continue.</span><button class="continue-btn" data-complete="curation">Continue to calibration →</button></div></section>
-          <section class="mode" id="curation-expanded"><div class="heading"><div><div class="eyebrow">Curation · style gallery</div><h1>See the style.<br />Choose the signal.</h1></div><p>Every card applies a different visual language to the same Gloss landing-page moment. Mark what to carry forward, and what to avoid.</p></div><div class="curation-tools"><div class="filter-set"><button class="filter active">All 20</button><button class="filter">Editorial</button><button class="filter">Systematic</button><button class="filter">Expressive</button><button class="filter">Anti-reference</button></div><div class="signal-count"><b id="reference-count-expanded">5</b> references · <b id="anti-count-expanded">2</b> anti-references</div></div><div class="style-gallery" id="expanded-style-gallery"></div><div class="continue-row"><span>Include at least two references and one anti-reference to enter the working area.</span><button class="continue-btn" data-complete="curation-expanded">Start calibration →</button></div></section>
-          <section class="mode" id="theme"><div class="eyebrow">Theme studio</div><h1>Adjust the surface,<br />preserve the judgment.</h1><p style="color:var(--muted);font-size:16px">Use the live theme controls below to edit the visual expression without losing the decision policy.</p><button class="mini-btn" style="margin-top:22px" onclick="document.getElementById('theme-panel').scrollIntoView({behavior:'smooth'})">Open live controls ↓</button><div class="continue-row"><span>Theme choices will be stored as token overrides.</span><button class="continue-btn" data-complete="theme">Review &amp; commit →</button></div></section>
+          <section class="mode" id="curation-expanded"><div class="heading"><div><div class="eyebrow">Curation · style gallery</div><h1>See the style.<br />Choose the signal.</h1></div><p>Every card applies a different visual language to the same Gloss landing-page moment. Mark what to carry forward, and what to avoid.</p></div><div class="curation-tools"><div class="filter-set"><button class="filter active">All 20</button><button class="filter">Selected</button><button class="filter">Editorial</button><button class="filter">Systematic</button><button class="filter">Expressive</button><button class="filter">Anti-reference</button></div><div class="signal-count"><b id="reference-count-expanded">5</b> references · <b id="anti-count-expanded">2</b> anti-references</div></div><div class="style-gallery" id="expanded-style-gallery"></div><div class="continue-row"><span>Include at least two references and one anti-reference to enter the working area.</span><button class="continue-btn" data-complete="curation-expanded">Start calibration →</button></div></section>
           <section class="mode" id="export"><div class="eyebrow">Ready to commit</div><h1>Give your agent<br />a durable brief.</h1><p style="max-width:540px;color:var(--muted);line-height:1.6;font-size:16px">Your final output includes a token bundle, decision memory, and agent-ready rules. Nothing is exported until you choose to commit it.</p><button class="mini-btn" style="margin-top:22px" id="export-btn">Prepare agent instructions</button></section>
         </div>
       </main>
@@ -184,7 +213,178 @@
     <script>
       const toast = document.getElementById('toast');
       const showToast = message => { toast.textContent = message; toast.classList.add('show'); setTimeout(()=>toast.classList.remove('show'), 2500); };
-      const stages = { board: { number: 1, label: 'Context & board', next: 'curation-expanded' }, 'curation-expanded': { number: 2, label: 'Curation', next: 'calibrate' }, calibrate: { number: 3, label: 'Calibrate' }, theme: { number: 4, label: 'Tune theme', next: 'export' }, export: { number: 5, label: 'Commit' } };
+      const stages = { board: { number: 1, label: 'Contextualize', next: 'curation-expanded' }, 'curation-expanded': { number: 2, label: 'Curate', next: 'calibrate' }, calibrate: { number: 3, label: 'Calibrate', next: 'export' }, export: { number: 4, label: 'Commit' } };
+      const board = document.getElementById('board');
+      board.innerHTML = `<div class="eyebrow">Contextualize</div><h1>Tell Gloss what this product<br />needs to make possible.</h1><form class="context-form" id="project-context-form"><div class="context-form-intro"><div><div class="eyebrow">Product intent</div><h2>Build the context behind the system.</h2></div><p>Gloss uses this brief to ask better calibration questions and turn your choices into guidance an agent can reuse.</p></div><div class="context-form-grid"><div class="context-field wide"><label for="project-truth">What does the product help someone do?</label><small>Describe the product’s core value in one or two plain-language sentences.</small><textarea id="project-truth">Gloss helps AI builders turn visual references and design judgment into reusable instructions for their coding agent.</textarea></div><div class="context-field"><label for="project-audience">Who is it for?</label><small>Include their expertise and the situation they are in.</small><textarea id="project-audience">AI-native builders with visual taste who are building real products but do not yet have a design vocabulary or system.</textarea></div><div class="context-field"><label for="project-promise">What should they understand first?</label><small>Name the belief the interface needs to earn early.</small><textarea id="project-promise">That their own visual judgment can become a practical system their agent can follow.</textarea></div><div class="context-field"><label for="project-action">What is the critical next action?</label><small>This helps Gloss establish hierarchy and momentum.</small><input id="project-action" value="Bring a project into Gloss and start calibrating its visual system." /></div><div class="context-field"><label for="project-feeling">How should it feel when it works well?</label><small>Use product language, not design jargon.</small><input id="project-feeling" value="Considered, useful, human, and capable." /></div><div class="context-field"><label for="project-boundary">What should it never feel like?</label><small>Boundaries help Gloss form useful anti-principles.</small><input id="project-boundary" value="A generic AI SaaS product with decorative styling and vague proof." /></div><div class="context-field"><label for="project-constraints">What constraints matter?</label><small>Platform, accessibility, brand, or implementation constraints.</small><input id="project-constraints" value="Desktop-first; no established brand system; value must be clear before it becomes aesthetic." /></div></div><div class="continue-row"><span>Your answers will guide the references, comparisons, and agent principles that follow.</span><button class="continue-btn" type="button" data-complete="board">Continue to curate →</button></div></form>`;
+      board.querySelector('.context-form-grid').insertAdjacentHTML('afterbegin', '<div class="context-field"><label for="project-name">What is your product called?</label><small>A simple working name is enough.</small><input id="project-name" value="Gloss marketing site" /></div>');
+      const themeLens = document.querySelector('.theme-lens');
+      const comparisonPair = document.querySelector('#calibration-area .pair');
+      const ownScreenTool = document.createElement('div');
+      ownScreenTool.className = 'own-screen-tool';
+      ownScreenTool.innerHTML = `<div class="own-screen-copy"><span class="own-screen-icon" aria-hidden="true">▧</span><p><b>Calibrate on your own screen</b><br />Gloss preserves your screen’s structure and content, then renders the active A/B tension from your curated direction.<span class="screen-render-note">PNG, JPG, or WebP · generated variants are concepts, not production code</span></p></div><div class="own-screen-actions"><span class="screen-status" id="screen-upload-status" aria-live="polite"></span><button type="button" id="upload-own-screen">Upload screen</button><button type="button" class="render-own-screen" id="render-own-screen" disabled>Render A + B</button><input id="own-screen-input" type="file" accept="image/png,image/jpeg,image/webp" hidden /></div>`;
+      const screenUploadInput = ownScreenTool.querySelector('#own-screen-input');
+      const renderOwnScreenButton = ownScreenTool.querySelector('#render-own-screen');
+      let uploadedScreenUrl = '';
+      let ownScreenRendered = false;
+      function applyUploadedScreen() {
+        document.querySelectorAll('#calibration-area .mock').forEach(mock => {
+          mock.querySelector('.uploaded-screen')?.remove();
+          mock.classList.remove('has-uploaded-screen');
+          if (!uploadedScreenUrl || !ownScreenRendered) return;
+          const overlay = document.createElement('div');
+          overlay.className = 'uploaded-screen';
+          overlay.style.backgroundImage = `url("${uploadedScreenUrl}")`;
+          const direction = mock.closest('.option')?.querySelector('.option-bar b')?.textContent || 'Direction preview';
+          overlay.innerHTML = `<span class="uploaded-screen-label">Your screen · ${direction}</span><span class="uploaded-screen-meta">Structure and content preserved · visual system re-rendered</span>`;
+          mock.prepend(overlay);
+          mock.classList.add('has-uploaded-screen');
+        });
+      }
+      ownScreenTool.querySelector('#upload-own-screen').addEventListener('click', () => screenUploadInput.click());
+      screenUploadInput.addEventListener('change', event => {
+        const file = event.target.files?.[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.addEventListener('load', () => {
+          uploadedScreenUrl = String(reader.result);
+          ownScreenRendered = false;
+          ownScreenTool.querySelector('#screen-upload-status').textContent = 'Screen ready';
+          ownScreenTool.querySelector('#upload-own-screen').textContent = 'Replace screen';
+          renderOwnScreenButton.disabled = false;
+          renderOwnScreenButton.textContent = 'Render A + B';
+          applyUploadedScreen();
+        });
+        reader.readAsDataURL(file);
+      });
+      renderOwnScreenButton.addEventListener('click', () => {
+        if (!uploadedScreenUrl) return;
+        renderOwnScreenButton.disabled = true;
+        renderOwnScreenButton.textContent = 'Reading visual system…';
+        ownScreenTool.querySelector('#screen-upload-status').textContent = 'Preserving your structure';
+        window.setTimeout(() => {
+          renderOwnScreenButton.textContent = 'Rendering two directions…';
+          ownScreenTool.querySelector('#screen-upload-status').textContent = 'Applying curation decisions';
+        }, 550);
+        window.setTimeout(() => {
+          ownScreenRendered = true;
+          renderOwnScreenButton.textContent = 'Re-render A + B';
+          renderOwnScreenButton.disabled = false;
+          ownScreenTool.querySelector('#screen-upload-status').textContent = 'Two directions ready';
+          applyUploadedScreen();
+        }, 1200);
+      });
+      comparisonPair.querySelector('.option[data-choice="A"]').dataset.visual = 'editorial';
+      comparisonPair.querySelector('.option[data-choice="B"]').dataset.visual = 'product';
+      document.querySelector('.mock.editorial').insertAdjacentHTML('beforeend', '<section class="mock-page-tail"><span class="tail-eyebrow">A clearer point of view</span><h4>Make taste useful in every decision.</h4><p>Editorial hierarchy gives the product enough room to feel thoughtful before it asks for attention.</p><div class="tail-grid"><i></i><i></i></div></section>');
+      document.querySelector('.mock.product').insertAdjacentHTML('beforeend', '<section class="mock-page-tail"><span class="tail-eyebrow">How the product works</span><h4>Show the system doing the work.</h4><p>Concrete examples and visible progress make the promise credible before adding character.</p><div class="tail-grid"><i></i><i></i></div></section>');
+      const exportScreen = document.getElementById('export');
+      exportScreen.innerHTML = `<div class="commit-heading"><div class="eyebrow">Commit</div><h1>Your calibrated<br />direction.</h1><p>Review the landing page with your chosen visual conditions applied. Make final token adjustments before you hand the system to your agent.</p></div><div class="commit-layout"><section class="commit-preview"><div class="commit-preview-top"><b>Gloss marketing site</b><span>Calibrated preview</span></div><div class="commit-site" id="commit-site"><div class="live-nav"><b>Gloss</b><span>How it works &nbsp;&nbsp; Manifesto &nbsp;&nbsp; Sign in</span><i></i></div><div class="live-copy"><h4>Give your agent<br />a point of view.</h4><p>Gloss turns the visual choices you can feel into a direction your agent can apply.</p></div><div class="live-stats"><div class="stat"><b>01</b>Curate signals</div><div class="stat"><b>02</b>Choose trade-offs</div><div class="stat"><b>03</b>Build with memory</div></div></div></section><aside class="token-panel"><div class="eyebrow">Token adjustments</div><h2>Fine-tune the surface.</h2><p>These edits become the final overrides in your design brief.</p><div class="token-control"><label>Background</label><div class="token-color"><input id="token-background" type="color" value="#f2e9df" /><span id="background-value">#F2E9DF</span></div></div><div class="token-control"><label>Accent</label><div class="token-color"><input id="token-accent" type="color" value="#e3705e" /><span id="accent-value">#E3705E</span></div></div><div class="token-control"><label>Corner radius <output id="radius-output">12px</output></label><input id="token-radius" type="range" min="0" max="24" value="12" /></div><div class="token-control"><label>Display scale <output id="scale-output">100%</output></label><input id="token-scale" type="range" min="88" max="112" value="100" /></div><button class="commit-action" id="export-btn">Prepare agent instructions</button></aside></div>`;
+      exportScreen.querySelector('.commit-heading').remove();
+      exportScreen.querySelector('.commit-preview-top').remove();
+      exportScreen.querySelector('.token-panel').innerHTML = `<div class="token-panel-head"><div class="eyebrow">Visual system</div><h2>Fine-tune the tokens.</h2></div><nav class="token-tabs" aria-label="Token categories"><button class="token-tab active" type="button" data-token-tab="colors">Colors</button><button class="token-tab" type="button" data-token-tab="type">Typography</button><button class="token-tab" type="button" data-token-tab="surface">Surface</button></nav><div class="token-groups"><section class="token-group" data-token-group="colors"><span class="token-group-title">Primary</span><div class="token-control"><label>Background</label><div class="token-color"><input id="token-background" type="color" value="#f2e9df" /><span id="background-value">#F2E9DF</span></div></div><div class="token-control"><label>Accent</label><div class="token-color"><input id="token-accent" type="color" value="#e3705e" /><span id="accent-value">#E3705E</span></div></div></section><section class="token-group" data-token-group="type" hidden><span class="token-group-title">Display type</span><div class="token-control"><label>Display scale <output id="scale-output">100%</output></label><input id="token-scale" type="range" min="88" max="112" value="100" /></div><div class="token-control"><label>Body density <output>Comfortable</output></label><input type="range" min="0" max="100" value="54" /></div></section><section class="token-group" data-token-group="surface" hidden><span class="token-group-title">Components</span><div class="token-control"><label>Corner radius <output id="radius-output">12px</output></label><input id="token-radius" type="range" min="0" max="24" value="12" /></div><div class="token-control"><label>Border contrast <output>Soft</output></label><input type="range" min="0" max="100" value="35" /></div></section></div><div class="token-action-row"><button class="commit-action" id="apply-system" type="button">Apply visual system to my product</button><button class="commit-action secondary" id="export-btn" type="button">Export visual system</button></div><div class="export-deliverables" id="export-deliverables" hidden><div class="eyebrow">Export ready</div><p>Two files capture the system for your team and agent.</p><div class="export-file"><div><b>Design map</b><span>tokens.json · colors, type, surface</span></div><span>↓</span></div><div class="export-file"><div><b>Design DNA</b><span>principles.md · judgments and trade-offs</span></div><span>↓</span></div></div>`;
+      exportScreen.querySelector('.commit-site').innerHTML = `<div class="live-nav"><b>Gloss</b><span>How it works &nbsp;&nbsp; Manifesto &nbsp;&nbsp; Sign in</span><i></i></div><div class="live-copy"><h4 id="commit-headline">Give your agent<br />a point of view.</h4><p id="commit-summary">Gloss turns visual choices you can feel into a direction your agent can apply.</p></div><div class="live-stats"><div class="stat"><b>01</b>Curate signals</div><div class="stat"><b>02</b>Choose trade-offs</div><div class="stat"><b>03</b>Build with memory</div></div><section class="commit-proof"><div><h5 id="commit-proof-title">Judgment becomes a working system.</h5><p id="commit-proof-copy">Every reference, trade-off, and principle remains visible to the builder and actionable for their agent.</p></div><div class="commit-flow"><i></i><i></i><i></i></div></section><section class="commit-quote"><p id="commit-principle">“A visual system should make future decisions easier, not merely make one screen consistent.”</p><span>Gloss design principle</span></section>`;
+      exportScreen.querySelector('[data-token-group="colors"]').insertAdjacentHTML('beforeend', `<span class="token-group-title">Secondary</span><div class="token-control"><label>Foreground</label><div class="token-color"><input id="token-foreground" type="color" value="#28211c" /><span id="foreground-value">#28211C</span></div></div><div class="token-control"><label>Muted surface</label><div class="token-color"><input type="color" value="#e8ded2" /></div></div>`);
+      exportScreen.querySelector('[data-token-group="type"]').insertAdjacentHTML('beforeend', `<span class="token-group-title">Reading</span><div class="token-control"><label>Body scale <output>16px</output></label><input type="range" min="14" max="20" value="16" /></div><div class="token-control"><label>Label contrast <output>Medium</output></label><input type="range" min="0" max="100" value="58" /></div>`);
+      exportScreen.querySelector('[data-token-group="surface"]').insertAdjacentHTML('beforeend', `<span class="token-group-title">Feedback</span><div class="token-control"><label>Focus treatment <output>Visible</output></label><input type="range" min="0" max="100" value="70" /></div><div class="token-control"><label>Shadow depth <output>Subtle</output></label><input type="range" min="0" max="100" value="28" /></div>`);
+      document.querySelector('#board > .eyebrow').textContent = 'Contextualize';
+      document.querySelector('#curation-expanded .heading .eyebrow').textContent = 'Curate';
+      document.querySelector('#curation-expanded .heading h1').innerHTML = 'Choose references and anti-references<br />that should shape your visual system.';
+      document.querySelector('#curation-expanded .heading > p').remove();
+      document.querySelector('#calibrate .heading > p').remove();
+      document.querySelector('#calibrate .heading h1').textContent = 'What’s the logic behind the decision?';
+      document.querySelector('#calibrate .heading h1').after(Object.assign(document.createElement('p'), { className: 'calibrate-subtitle', textContent: 'This may form the principles that help agents make consistent design decisions and trade-offs.' }));
+      const calibrationContext = document.querySelector('#calibrate .context');
+      const reviewContextButton = calibrationContext.querySelector('button');
+      const contextReview = document.createElement('section');
+      contextReview.className = 'context-review';
+      contextReview.hidden = true;
+      contextReview.innerHTML = `<div class="context-review-top"><div><div class="eyebrow">What Gloss knows</div><h2 id="context-title">Gloss marketing site</h2></div><button type="button" class="context-link" id="edit-context">Edit context</button></div><div class="context-summary"><div><span>Product summary</span><b>Design memory for AI builders</b><p>A visual-system plugin that turns references and judgment into instructions an implementation agent can use.</p></div><div><span>Target users</span><b id="context-audience-summary">AI-native builders</b><p>People with visual taste who are building real products but do not have design vocabulary or a system yet.</p></div><div><span>Landing-page job</span><b id="context-job-summary">Make the loop believable</b><p>Explain curate → calibrate → commit, then invite a builder to bring their own project.</p></div></div><div class="context-edit-fields" hidden><div class="context-review-actions"><button type="button" id="cancel-context">Cancel</button><button type="button" class="primary" id="save-context">Save context</button></div></div><div class="context-modal" id="context-confirmation" hidden><div class="context-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="context-confirmation-title"><div class="eyebrow">Context updated</div><h3 id="context-confirmation-title">Should Gloss refresh curation?</h3><p>Your reference and anti-reference selections stay in place. You can update their previews for this context, or refresh calibration in place instead.</p><div class="context-modal-actions"><button type="button" class="context-link" id="stay-calibrating">Refresh calibration</button><button type="button" class="context-link" id="apply-context">Refresh curation →</button></div></div></div>`;
+      calibrationContext.after(contextReview);
+      const contextEditFields = contextReview.querySelector('.context-edit-fields');
+      const clonedFormFields = board.querySelector('.context-form-grid').cloneNode(true);
+      clonedFormFields.querySelectorAll('input,textarea').forEach(field => { const source = field.id; field.dataset.contextSource = source; field.id = `edit-${source}`; const label = clonedFormFields.querySelector(`label[for="${source}"]`); if (label) label.htmlFor = field.id; });
+      contextEditFields.prepend(clonedFormFields);
+      const contextInputs = [...contextEditFields.querySelectorAll('[data-context-source]')];
+      const contextCopy = calibrationContext.querySelector('.context-copy');
+      const readContext = () => Object.fromEntries(contextInputs.map(input => [input.dataset.contextSource, input.value.trim()]));
+      const writeContext = values => contextInputs.forEach(input => { input.value = values[input.dataset.contextSource] ?? ''; });
+      let contextDraft = readContext();
+      reviewContextButton.addEventListener('click', () => { contextReview.hidden = !contextReview.hidden; });
+      contextReview.querySelector('#edit-context').addEventListener('click', () => {
+        contextDraft = readContext();
+        contextEditFields.hidden = false;
+      });
+      contextReview.querySelector('#cancel-context').addEventListener('click', () => {
+        writeContext(contextDraft);
+        contextEditFields.hidden = true;
+      });
+      contextReview.querySelector('#save-context').addEventListener('click', () => {
+        const values = readContext();
+        contextInputs.forEach(input => { const source = document.getElementById(input.dataset.contextSource); if (source) source.value = input.value; });
+        contextEditFields.hidden = true;
+        const product = values['project-name'] || 'Untitled product';
+        const audience = values['project-audience'] || 'this audience';
+        const promise = values['project-promise'] || 'make its value clear';
+        const truth = values['project-truth'] || 'This product needs a clear visual system.';
+        contextReview.querySelector('#context-title').textContent = product;
+        contextReview.querySelector('#context-audience-summary').textContent = audience;
+        contextReview.querySelector('#context-job-summary').textContent = promise;
+        contextReview.querySelector('.context-summary div p').textContent = truth;
+        contextCopy.innerHTML = `<b>Building context understood.</b> ${truth} <button>Review context</button>`;
+        contextCopy.querySelector('button').addEventListener('click', () => { contextReview.hidden = !contextReview.hidden; });
+        contextReview.querySelector('#context-confirmation').hidden = false;
+      });
+      contextReview.querySelector('#stay-calibrating').addEventListener('click', () => {
+        contextReview.querySelector('#context-confirmation').hidden = true;
+        contextReview.hidden = true;
+        comparisonChoices.length = 0;
+        comparisonIndex = 0;
+        renderComparison();
+        showToast('Calibration refreshed with the updated context');
+      });
+      contextReview.querySelector('#apply-context').addEventListener('click', () => {
+        const values = readContext();
+        const product = values['project-name'] || 'Untitled product';
+        const audience = values['project-audience'] || 'this audience';
+        const action = values['project-action'] || values['project-promise'] || 'make its value clear';
+        const notice = document.querySelector('#curation-expanded .context-preview-notice') || document.createElement('div');
+        notice.className = 'context-preview-notice';
+        notice.textContent = `Showing your selected styles for ${product}, designed for ${audience} to ${action.toLowerCase()}.`;
+        if (!notice.parentElement) document.querySelector('#curation-expanded .heading').after(notice);
+        document.querySelectorAll('#expanded-style-gallery .style-demo h4').forEach(title => { title.textContent = `${product}: ${action}`; });
+        activateStage('curation-expanded');
+      });
+      themeLens.firstElementChild.remove();
+      comparisonPair.after(themeLens);
+      themeLens.before(ownScreenTool);
+      document.querySelector('#calibration-area .cal-head').remove();
+      document.querySelector('#calibration-area .prompt strong').textContent = 'Where should Gloss earn belief first?';
+      document.querySelector('#calibration-area .prompt div span').textContent = 'Choose the product truth your agent should make clear before it adds visual character.';
+      document.querySelector('#calibration-area .prompt .pill').textContent = '01 / 03';
+      document.querySelector('#calibrate .rail .rail-card:nth-child(2)').remove();
+      document.querySelector('#calibrate .rail .rail-card:last-child').remove();
+      const reasoningCard = document.querySelector('#calibrate .reasoning-card');
+      reasoningCard.hidden = true;
+      document.querySelector('#calibrate .reasoning-card .eyebrow').textContent = 'Decision reasoning';
+      document.querySelector('#reasoning-title').textContent = 'Add a principle if it would help your agent.';
+      document.querySelector('#reasoning-copy').textContent = 'A principle helps your agent make consistent design decisions and trade-offs later.';
+      document.querySelector('#reasoning-status').textContent = 'Select a principle when it captures the reasoning behind your choice.';
+      const answerRow = document.querySelector('#calibration-area .answer-row');
+      const previousComparison = document.createElement('button');
+      previousComparison.type = 'button';
+      previousComparison.className = 'previous-comparison';
+      previousComparison.textContent = '← Previous';
+      previousComparison.disabled = true;
+      const nextComparison = document.createElement('button');
+      nextComparison.type = 'button';
+      nextComparison.className = 'next-comparison';
+      nextComparison.textContent = 'Next comparison →';
+      nextComparison.disabled = true;
+      answerRow.append(previousComparison, nextComparison);
+      themeLens.after(reasoningCard);
+      document.querySelector('#calibrate .rail').remove();
+      document.querySelector('#curation-expanded .filter-set').innerHTML = '<div class="filter-controls"><div><span class="filter-group-label">Show</span><div class="view-switch"><button class="view-choice active" data-gallery-view="all">All styles</button><button class="view-choice" data-gallery-view="selected">Selected</button></div></div><label class="style-picker"><span class="filter-group-label">Style family</span><select id="style-family-filter"><option value="all">All families</option><option value="editorial">Editorial</option><option value="systematic">Systematic</option><option value="expressive">Expressive</option></select></label></div>';
+      document.querySelector('#curation-expanded .continue-row span').remove();
       let unlockedThrough = 1;
       const completedStages = new Set();
       function renderStepper(currentTab) {
@@ -203,27 +403,138 @@
         const stage = stages[tabName];
         if (stage.number > unlockedThrough) { showToast('Complete project context and curation to unlock the working area'); return; }
         document.querySelectorAll('.mode').forEach(m=>m.classList.toggle('visible', m.id === tabName));
-        document.getElementById('stage-name').textContent = stage.label;
-        document.getElementById('progress-label').textContent = `${stage.number} of 5`;
-        document.getElementById('progress-fill').style.width = `${stage.number * 20}%`;
         renderStepper(tabName);
         window.scrollTo({top:0,behavior:'smooth'});
       }
       function showDistilling() {
         document.querySelectorAll('.mode').forEach(m=>m.classList.toggle('visible', m.id === 'distilling'));
-        document.getElementById('stage-name').textContent = 'Distilling visual system';
-        document.getElementById('progress-label').textContent = '2 of 5';
-        document.getElementById('progress-fill').style.width = '40%';
         renderStepper('curation-expanded');
         window.scrollTo({top:0,behavior:'smooth'});
       }
       document.querySelectorAll('.step').forEach(step => step.addEventListener('click', () => activateStage(step.dataset.tab)));
-      document.querySelectorAll('.option').forEach(option => option.addEventListener('click', () => { document.querySelectorAll('.option').forEach(o=>o.classList.remove('selected')); option.classList.add('selected'); const selected = option.dataset.choice === 'A' ? 'Editorial invitation selected — mood can lead, with proof later.' : 'Product demonstration selected — clarity should lead the landing page.'; showToast(selected); }));
-      document.querySelectorAll('[data-answer]').forEach(button => button.addEventListener('click', () => showToast(button.dataset.answer + ' recorded as calibration evidence')));
-      document.querySelectorAll('[data-screen]').forEach(card => card.addEventListener('click', () => { document.querySelectorAll('[data-screen]').forEach(c=>{c.classList.remove('selected-screen'); const status=c.querySelector('.chosen'); if(status) status.textContent='';}); card.classList.add('selected-screen'); const status=card.querySelector('.screen-copy span'); status.className='chosen'; status.textContent='Selected for preview'; showToast(`${card.dataset.screen} is now the live preview screen`); }));
-      document.getElementById('upload-screen').addEventListener('click', () => showToast('Upload surface opened — add a screen to use it as the preview'));
+      const reasoningTitle = document.getElementById('reasoning-title');
+      const reasoningCopy = document.getElementById('reasoning-copy');
+      const principleOptions = document.getElementById('principle-options');
+      const reasoningStatus = document.getElementById('reasoning-status');
+      const decisionPrinciples = [
+        {
+          A: [
+            'Open with a point of view, then show the artifact it produces.',
+            'Frame taste as a system before explaining how Gloss implements it.',
+            'Every expressive moment must point back to a concrete builder outcome.'
+          ],
+          B: [
+            'Show the working loop before asking people to believe in visual judgment.',
+            'Make the agent’s output tangible before describing its philosophy.',
+            'Use proof to establish trust; let editorial character reward attention.'
+          ]
+        },
+        {
+          A: [
+            'Name what the agent will decide before showing how it generates the result.',
+            'Expose the user’s judgment as the source of control, not a hidden model setting.',
+            'When AI is involved, make the human choice visible at every consequential handoff.'
+          ],
+          B: [
+            'Show the mechanic first only when the builder can immediately understand the outcome.',
+            'Use interface evidence to explain AI behavior before introducing abstract language.',
+            'A workflow step should earn its place by reducing uncertainty for the builder.'
+          ]
+        },
+        {
+          A: [
+            'Keep the working surface quiet; reserve warmth for moments of judgment and commitment.',
+            'Use color to signal a meaningful choice, never to decorate an empty state.',
+            'Let the product’s evidence carry the page before texture or personality enters.'
+          ],
+          B: [
+            'Set a confident emotional frame early, then discipline it with product proof.',
+            'Use visual character to tell builders what kind of care Gloss brings to their work.',
+            'When a distinctive gesture appears, connect it to a decision the agent must remember.'
+          ]
+        }
+      ];
+      const comparisonPrompts = [
+        { question: 'Where should Gloss earn belief first?', detail: 'Choose the product truth your agent should make clear before it adds visual character.', a: 'Start with a point of view', aCue: 'judgment leads', b: 'Start with the working system', bCue: 'proof leads' },
+        { question: 'What should make the agent feel trustworthy?', detail: 'Choose whether Gloss earns confidence by exposing human judgment or making the mechanic legible.', a: 'Make judgment visible', aCue: 'human choice leads', b: 'Make the mechanic visible', bCue: 'workflow leads' },
+        { question: 'Where should character enter the experience?', detail: 'Choose the rule that keeps Gloss distinctive without weakening the evidence a builder needs.', a: 'Warmth after proof', aCue: 'clarity leads', b: 'Mood before proof', bCue: 'personality leads' }
+      ];
+      const comparisonVisuals = [
+        {
+          A: `<div class="mock editorial"><div class="mock-nav"><b class="mock-logo">Gloss</b><span>How it works &nbsp; About</span></div><div class="mock-hero"><h3>Your taste is already a design system.</h3><p>Turn what you see into direction an AI can carry into every screen.</p><i class="mock-cta">Find your point of view</i></div><i class="sketch"></i><section class="mock-page-tail"><span class="tail-eyebrow">A clearer point of view</span><h4>Make taste useful in every decision.</h4><p>Editorial hierarchy gives the product enough room to feel thoughtful before it asks for attention.</p><div class="tail-grid"><i></i><i></i></div></section></div>`,
+          B: `<div class="mock product"><div class="mock-nav"><b class="mock-logo">✦ GLOSS</b><span>Sign in</span></div><div class="product-hero"><span class="tag">DESIGN MEMORY FOR AI BUILDERS</span><h3>Make visual judgment executable.</h3><p>Curate references, settle trade-offs, and export the system your agent should follow.</p></div><div class="product-demo"><div class="p-lines"><i></i><i></i><i></i></div><div class="p-chart"></div></div><section class="mock-page-tail"><span class="tail-eyebrow">How the product works</span><h4>Show the system doing the work.</h4><p>Concrete examples and visible progress make the promise credible before adding character.</p><div class="tail-grid"><i></i><i></i></div></section></div>`
+        },
+        {
+          A: `<div class="mock editorial style-judgment"><div class="mock-nav"><b class="mock-logo">Gloss</b><span>Decision memory</span></div><div class="mock-hero"><h3>Teach the agent what matters.</h3><p>Choose the principle that should hold when the screen, state, or prompt changes.</p></div><div class="decision-list"><i>01 &nbsp; Keep proof close to the promise.</i><i>02 &nbsp; Make the human choice visible.</i><i>03 &nbsp; Use character to clarify intent.</i></div><section class="mock-page-tail"><span class="tail-eyebrow">Decision memory</span><h4>Guidance the agent can reuse.</h4><p>The interface leads with the choice a builder makes, not the machinery underneath it.</p><div class="tail-grid"><i></i><i></i></div></section></div>`,
+          B: `<div class="mock product style-workflow"><div class="mock-nav"><b class="mock-logo">✦ GLOSS</b><span>01 / 03</span></div><div class="product-hero"><span class="tag">WORKING SYSTEM</span><h3>See each choice become a rule.</h3><p>Use the workflow to show what the agent changes and why it changes it.</p></div><div class="workflow-list"><i>Reference signals →</i><i>Decision logic →</i><i>Agent-ready guidance →</i></div><section class="mock-page-tail"><span class="tail-eyebrow">Visible mechanics</span><h4>Make the loop legible.</h4><p>Each step explains an outcome, so builders can inspect the system before trusting it.</p><div class="tail-grid"><i></i><i></i></div></section></div>`
+        },
+        {
+          A: `<div class="mock editorial style-quiet"><div class="mock-nav"><b class="mock-logo">Gloss</b><span>Manifesto &nbsp; Sign in</span></div><div class="mock-hero"><h3>Quiet structure. Clear conviction.</h3><p>Let the evidence do the work, then bring warmth to the moment a builder commits.</p></div><div class="decision-list"><i>One clear primary action</i><i>Product proof before ornament</i><i>Warmth at consequential moments</i></div><section class="mock-page-tail"><span class="tail-eyebrow">Calm, not empty</span><h4>Give the signal room to land.</h4><p>The system stays restrained until a decision deserves more presence.</p><div class="tail-grid"><i></i><i></i></div></section></div>`,
+          B: `<div class="mock product style-signal"><div class="mock-nav"><b class="mock-logo">✦ GLOSS</b><span>Explore</span></div><div class="product-hero"><span class="tag">DESIGN WITH A POINT OF VIEW</span><h3>Make the system unmistakable.</h3><p>Establish a memorable signal first, then anchor it in product proof.</p></div><div class="signal-shapes"><i></i><i></i><i></i></div><section class="mock-page-tail"><span class="tail-eyebrow">A distinctive system</span><h4>Character with a job to do.</h4><p>Every graphic gesture identifies a principle the agent should preserve in later screens.</p><div class="tail-grid"><i></i><i></i></div></section></div>`
+        }
+      ];
+      const comparisonVisualVariants = [
+        { A: 'editorial', B: 'product' },
+        { A: 'judgment', B: 'workflow' },
+        { A: 'quiet', B: 'signal' }
+      ];
+      let comparisonIndex = 0;
+      const comparisonChoices = [];
+      function renderComparison() {
+        const comparison = comparisonPrompts[comparisonIndex];
+        document.querySelector('#calibration-area .prompt strong').textContent = comparison.question;
+        document.querySelector('#calibration-area .prompt div span').textContent = comparison.detail;
+        document.querySelector('#calibration-area .prompt .pill').textContent = `0${comparisonIndex + 1} / 03`;
+        const optionA = document.querySelector('.option[data-choice="A"]');
+        const optionB = document.querySelector('.option[data-choice="B"]');
+        optionA.dataset.visual = comparisonVisualVariants[comparisonIndex].A;
+        optionB.dataset.visual = comparisonVisualVariants[comparisonIndex].B;
+        optionA.querySelector('.mock').outerHTML = comparisonVisuals[comparisonIndex].A;
+        optionB.querySelector('.mock').outerHTML = comparisonVisuals[comparisonIndex].B;
+        optionA.querySelector('.option-bar b').textContent = comparison.a;
+        optionA.querySelector('.option-bar span').textContent = comparison.aCue;
+        optionB.querySelector('.option-bar b').textContent = comparison.b;
+        optionB.querySelector('.option-bar span').textContent = comparison.bCue;
+        applyUploadedScreen();
+        const savedChoice = comparisonChoices[comparisonIndex];
+        document.querySelectorAll('.option').forEach(option => { const isSelected = option.dataset.choice === savedChoice; option.classList.toggle('selected', isSelected); option.setAttribute('aria-pressed', String(isSelected)); });
+        document.querySelectorAll('[data-answer]').forEach(button => button.classList.toggle('active', button.dataset.answer === savedChoice));
+        previousComparison.disabled = comparisonIndex === 0;
+        nextComparison.disabled = !savedChoice;
+        nextComparison.hidden = comparisonIndex === comparisonPrompts.length - 1;
+        nextComparison.textContent = 'Next comparison →';
+        if (savedChoice === 'A' || savedChoice === 'B') renderReasoning(savedChoice);
+        else reasoningCard.hidden = true;
+      }
+      function renderReasoning(choice) {
+        reasoningCard.hidden = false;
+        reasoningTitle.textContent = 'What principle should guide the agent?';
+        reasoningCopy.textContent = 'A principle helps your agent make consistent design decisions and trade-offs beyond this screen.';
+        principleOptions.innerHTML = decisionPrinciples[comparisonIndex][choice].map((principle, index) => `<button class="principle-option" data-principle="${index}">${principle}</button>`).join('');
+        reasoningStatus.textContent = 'Select a principle that explains your choice, or add nuance below.';
+        principleOptions.querySelectorAll('.principle-option').forEach(button => button.addEventListener('click', () => {
+          const wasSelected = button.classList.contains('active');
+          principleOptions.querySelectorAll('.principle-option').forEach(item => item.classList.remove('active'));
+          if (!wasSelected) button.classList.add('active');
+          reasoningStatus.textContent = wasSelected ? 'No principle selected. You can continue without one.' : 'Principle selected. Add nuance if the agent should interpret it differently.';
+        }));
+      }
+      document.querySelectorAll('.option').forEach(option => { option.setAttribute('aria-pressed', 'false'); option.addEventListener('click', () => { comparisonChoices[comparisonIndex] = option.dataset.choice; document.querySelectorAll('.option').forEach(o => { o.classList.remove('selected'); o.setAttribute('aria-pressed', 'false'); }); document.querySelectorAll('[data-answer]').forEach(button => button.classList.remove('active')); option.classList.add('selected'); option.setAttribute('aria-pressed', 'true'); nextComparison.disabled = false; renderReasoning(option.dataset.choice); applyCalibrationToCommit(); }); });
+      document.querySelectorAll('[data-answer]').forEach(button => button.addEventListener('click', () => { comparisonChoices[comparisonIndex] = button.dataset.answer; document.querySelectorAll('.option').forEach(option => option.classList.remove('selected')); document.querySelectorAll('[data-answer]').forEach(item => item.classList.remove('active')); button.classList.add('active'); reasoningCard.hidden = true; nextComparison.disabled = false; }));
+      previousComparison.addEventListener('click', () => {
+        if (comparisonIndex === 0) return;
+        comparisonIndex -= 1;
+        renderComparison();
+      });
+      nextComparison.addEventListener('click', () => {
+        if (comparisonIndex === comparisonPrompts.length - 1) { completedStages.add('calibrate'); unlockedThrough = 4; activateStage('export'); return; }
+        comparisonIndex += 1;
+        renderComparison();
+      });
+      document.querySelectorAll('[data-screen]').forEach(card => card.addEventListener('click', () => { document.querySelectorAll('[data-screen]').forEach(c=>{c.classList.remove('selected-screen'); const status=c.querySelector('.chosen'); if(status) status.textContent='';}); card.classList.add('selected-screen'); const status=card.querySelector('.screen-copy span'); status.className='chosen'; status.textContent='Selected for preview'; }));
+      document.getElementById('upload-screen')?.addEventListener('click', () => {});
       function updateCurationCounts() { document.getElementById('reference-count').textContent = document.querySelectorAll('.inspiration.is-reference').length; document.getElementById('anti-count').textContent = document.querySelectorAll('.inspiration.is-anti').length; }
-      document.querySelectorAll('[data-curation-card] .curate-action').forEach(action => action.addEventListener('click', event => { event.stopPropagation(); const card = action.closest('[data-curation-card]'); const isReference = action.dataset.reaction === 'reference'; card.classList.toggle('is-reference', isReference); card.classList.toggle('is-anti', !isReference); const badge = card.querySelector('.decision-badge'); badge.textContent = isReference ? '✓ Reference' : '× Anti-reference'; updateCurationCounts(); showToast(isReference ? 'Added as a reference' : 'Saved as an anti-reference'); }));
+      document.querySelectorAll('[data-curation-card] .curate-action').forEach(action => action.addEventListener('click', event => { event.stopPropagation(); const card = action.closest('[data-curation-card]'); const isReference = action.dataset.reaction === 'reference'; card.classList.toggle('is-reference', isReference); card.classList.toggle('is-anti', !isReference); const badge = card.querySelector('.decision-badge'); badge.textContent = isReference ? '✓ Reference' : '× Anti-reference'; updateCurationCounts(); }));
       const expandedStyles = [
         ['Quiet editorial','style-editorial','Serif-led hierarchy, warm paper, and space that lets the product feel considered.','reference'],
         ['Swiss system','style-swiss','Grid discipline, concise type, and one high-contrast signal for direct clarity.','reference'],
@@ -253,39 +564,152 @@
         'Bauhaus graphic':'expressive', 'Soft interface':'expressive', 'Neo-brutalist':'expressive', 'Clay interface':'expressive', 'Retro digital':'expressive', 'Cyber terminal':'expressive', 'Dark luxury':'expressive', 'Memphis play':'expressive', 'Kawaii soft':'expressive', 'Art deco':'expressive', 'Glassmorphism':'expressive', 'Glossy gradient':'expressive'
       }[name] || 'expressive');
       expandedGallery.innerHTML = expandedStyles.map(([name,variant,description,state]) => `<article class="style-card ${state === 'reference' ? 'is-reference' : state === 'anti' ? 'is-anti' : ''}" data-expanded-style-card data-category="${categoryFor(name)}"><div class="style-demo ${variant}"><div class="demo-nav"><b>Gloss</b><span>How it works</span></div><h4>Give your agent a point of view.</h4><p>Same story, different visual language.</p><i class="demo-cta">Explore Gloss</i></div><div class="curate-actions"><button class="curate-action include" data-expanded-reaction="reference"><i>✓</i> Reference</button><button class="curate-action anti" data-expanded-reaction="anti"><i>×</i> Anti-reference</button></div><div class="style-info"><div class="style-info-top"><h3>${name}</h3><i class="decision-badge">${state === 'reference' ? '✓ Reference' : state === 'anti' ? '× Anti-reference' : ''}</i></div><p>${description}</p></div></article>`).join('');
-      document.querySelectorAll('#curation-expanded .filter').forEach(filter => filter.addEventListener('click', () => {
-        const selected = filter.textContent.trim().toLowerCase();
-        document.querySelectorAll('#curation-expanded .filter').forEach(item => item.classList.toggle('active', item === filter));
+      function updateExpandedCardActions(card) {
+        const referenceAction = card.querySelector('[data-expanded-reaction="reference"]');
+        const antiAction = card.querySelector('[data-expanded-reaction="anti"]');
+        if (card.classList.contains('is-reference')) {
+          referenceAction.innerHTML = '<i>−</i> Remove reference';
+          antiAction.innerHTML = '<i>×</i> Make anti-reference';
+        } else if (card.classList.contains('is-anti')) {
+          referenceAction.innerHTML = '<i>✓</i> Make reference';
+          antiAction.innerHTML = '<i>−</i> Remove anti-reference';
+        } else {
+          referenceAction.innerHTML = '<i>✓</i> Reference';
+          antiAction.innerHTML = '<i>×</i> Anti-reference';
+        }
+      }
+      document.querySelectorAll('[data-expanded-style-card]').forEach(updateExpandedCardActions);
+      let galleryView = 'all';
+      const styleFamilyFilter = document.getElementById('style-family-filter');
+      function filterExpandedStyles() {
+        const family = styleFamilyFilter.value;
         document.querySelectorAll('[data-expanded-style-card]').forEach(card => {
-          const match = selected === 'all 20' || (selected === 'anti-reference' ? card.classList.contains('is-anti') : card.dataset.category === selected);
-          card.hidden = !match;
+          const matchesView = galleryView === 'all' || card.classList.contains('is-reference') || card.classList.contains('is-anti');
+          const matchesFamily = family === 'all' || card.dataset.category === family;
+          card.hidden = !(matchesView && matchesFamily);
         });
+      }
+      document.querySelectorAll('[data-gallery-view]').forEach(button => button.addEventListener('click', () => {
+        galleryView = button.dataset.galleryView;
+        document.querySelectorAll('[data-gallery-view]').forEach(item => item.classList.toggle('active', item === button));
+        filterExpandedStyles();
       }));
+      styleFamilyFilter.addEventListener('change', filterExpandedStyles);
       function updateExpandedCounts() { document.getElementById('reference-count-expanded').textContent = document.querySelectorAll('#expanded-style-gallery .style-card.is-reference').length; document.getElementById('anti-count-expanded').textContent = document.querySelectorAll('#expanded-style-gallery .style-card.is-anti').length; }
-      document.querySelectorAll('[data-expanded-reaction]').forEach(action => action.addEventListener('click', event => { event.stopPropagation(); const card = action.closest('[data-expanded-style-card]'); const isReference = action.dataset.expandedReaction === 'reference'; card.classList.toggle('is-reference', isReference); card.classList.toggle('is-anti', !isReference); card.querySelector('.decision-badge').textContent = isReference ? '✓ Reference' : '× Anti-reference'; updateExpandedCounts(); showToast(isReference ? 'Added as a reference' : 'Saved as an anti-reference'); }));
+      document.querySelectorAll('[data-expanded-reaction]').forEach(action => action.addEventListener('click', event => { event.stopPropagation(); const card = action.closest('[data-expanded-style-card]'); const isReference = action.dataset.expandedReaction === 'reference'; const isAlreadySelected = isReference ? card.classList.contains('is-reference') : card.classList.contains('is-anti'); card.classList.toggle('is-reference', !isAlreadySelected && isReference); card.classList.toggle('is-anti', !isAlreadySelected && !isReference); card.querySelector('.decision-badge').textContent = isAlreadySelected ? '' : isReference ? '✓ Reference' : '× Anti-reference'; updateExpandedCardActions(card); updateExpandedCounts(); filterExpandedStyles(); applyCalibrationToCommit(); }));
       document.querySelectorAll('[data-complete]').forEach(button => button.addEventListener('click', () => {
         const current = button.dataset.complete;
-        if (current === 'curation-expanded' && (document.querySelectorAll('#expanded-style-gallery .style-card.is-reference').length < 2 || document.querySelectorAll('#expanded-style-gallery .style-card.is-anti').length < 1)) { showToast('Add at least two references and one anti-reference first'); return; }
-        if (current === 'calibrate' && !document.querySelector('.option.selected')) { showToast('Choose a direction before continuing'); return; }
+        if (current === 'board') {
+          const productName = document.getElementById('project-name').value.trim() || 'Untitled product';
+          const productTruth = document.getElementById('project-truth').value.trim();
+          const audience = document.getElementById('project-audience').value.trim();
+          const promise = document.getElementById('project-promise').value.trim();
+          contextInputs.forEach(input => { const source = document.getElementById(input.dataset.contextSource); if (source) input.value = source.value; });
+          contextReview.querySelector('#context-title').textContent = productName;
+          contextReview.querySelector('#context-audience-summary').textContent = audience;
+          contextReview.querySelector('#context-job-summary').textContent = promise;
+          contextCopy.innerHTML = `<b>Building context understood.</b> ${productTruth} <button>Review context</button>`;
+          contextCopy.querySelector('button').addEventListener('click', () => { contextReview.hidden = !contextReview.hidden; });
+        }
+        if (current === 'curation-expanded' && document.querySelectorAll('#expanded-style-gallery .style-card.is-reference').length < 1) { showToast('Choose at least one reference before continuing'); return; }
+        if (current === 'calibrate' && !comparisonPrompts.every((_, index) => ['A', 'B', 'Both work', 'Neither'].includes(comparisonChoices[index]))) { showToast('Choose A, B, Both work, or Neither for each comparison before continuing'); return; }
         if (current === 'curation-expanded') {
           completedStages.add(current);
           showDistilling();
-          setTimeout(() => { unlockedThrough = 4; activateStage('calibrate'); showToast('Calibration prompts are ready'); }, 1800);
+          setTimeout(() => { unlockedThrough = 3; activateStage('calibrate'); }, 1800);
           return;
         }
         completedStages.add(current);
         if (current === 'board') unlockedThrough = 2;
-        if (current === 'theme') unlockedThrough = 5;
-        showToast(`${stages[current].label} saved to decision memory`);
+        if (current === 'calibrate') unlockedThrough = 4;
         if (stages[current].next) activateStage(stages[current].next);
         else renderStepper(current);
       }));
-      document.querySelectorAll('[data-iterate]').forEach(button => button.addEventListener('click', () => activateStage(button.dataset.iterate)));
       activateStage('board');
-      const temp = document.getElementById('temperature'), density = document.getElementById('density'), contrast = document.getElementById('contrast'), site = document.getElementById('live-site');
-      function updateTheme() { const t=+temp.value,d=+density.value,c=+contrast.value; document.getElementById('temp-out').textContent = t>60?'Warm':t<38?'Cool':'Balanced'; document.getElementById('density-out').textContent = d>60?'Airy':d<38?'Compact':'Balanced'; document.getElementById('contrast-out').textContent = c>60?'Bold':c<38?'Soft':'Balanced'; site.style.setProperty('--live-bg', t>60?'#f2e9df':t<38?'#e7edf2':'#edeae4'); site.style.setProperty('--live-accent', t>60?'#e3705e':t<38?'#5383a5':'#8878e7'); site.style.setProperty('--live-ink', c>60?'#1c1815':'#37312c'); site.style.padding = (d>60?'17px 22px':d<38?'11px 15px':'14px 18px'); }
-      [temp,density,contrast].forEach(input=>input.addEventListener('input',updateTheme));
-      document.getElementById('export-btn').addEventListener('click',()=>showToast('AGENTS.md instructions prepared for Gloss'));
+      const calibrationArea = document.getElementById('calibration-area');
+      const lensDensity = document.getElementById('lens-density');
+      const lensTemperature = document.getElementById('lens-temperature');
+      const lensContrast = document.getElementById('lens-contrast');
+      const commitSite = document.getElementById('commit-site');
+      const tokenBackground = document.getElementById('token-background');
+      const tokenAccent = document.getElementById('token-accent');
+      const tokenForeground = document.getElementById('token-foreground');
+      const tokenRadius = document.getElementById('token-radius');
+      const tokenScale = document.getElementById('token-scale');
+      [lensDensity, lensTemperature, lensContrast].forEach(control => control.setAttribute('aria-label', control.closest('.lens-control').querySelector('label').textContent.trim()));
+      document.querySelectorAll('.token-control input').forEach(control => control.setAttribute('aria-label', control.closest('.token-control').querySelector('label').textContent.trim()));
+      function applyCommitTokens() {
+        const background = tokenBackground.value;
+        const accent = tokenAccent.value;
+        const foreground = tokenForeground.value;
+        commitSite.style.setProperty('--commit-bg', background);
+        commitSite.style.setProperty('--commit-accent', accent);
+        commitSite.style.setProperty('--commit-ink', foreground);
+        commitSite.style.setProperty('--commit-radius', `${tokenRadius.value}px`);
+        commitSite.querySelector('.live-copy h4').style.fontSize = `${47 * (+tokenScale.value / 100)}px`;
+        document.getElementById('background-value').textContent = background.toUpperCase();
+        document.getElementById('accent-value').textContent = accent.toUpperCase();
+        document.getElementById('foreground-value').textContent = foreground.toUpperCase();
+        document.getElementById('radius-output').textContent = `${tokenRadius.value}px`;
+        document.getElementById('scale-output').textContent = `${tokenScale.value}%`;
+      }
+      function getCurationProfile() {
+        const references = [...document.querySelectorAll('#expanded-style-gallery .style-card.is-reference')];
+        const antiReferences = [...document.querySelectorAll('#expanded-style-gallery .style-card.is-anti')];
+        const names = references.map(card => card.querySelector('.style-info h3')?.textContent).filter(Boolean);
+        const antiNames = antiReferences.map(card => card.querySelector('.style-info h3')?.textContent).filter(Boolean);
+        const categories = references.map(card => card.dataset.category);
+        const family = categories.includes('editorial') ? 'editorial' : categories.includes('systematic') ? 'systematic' : categories.includes('expressive') ? 'expressive' : 'editorial';
+        const palettes = {
+          editorial: { background:'#f2e9df', accent:'#c96555', foreground:'#28211c', headline:'Give your agent<br />a considered point of view.', summary:'Warm editorial structure makes the product feel deliberate, then lets its working system earn belief.', proof:'Human judgment, made usable.', principle:'“Use warmth to invite attention; use a clear working system to keep it.”' },
+          systematic: { background:'#edf1ec', accent:'#3f7654', foreground:'#1f2b21', headline:'Make the visual system<br />easy to trust.', summary:'Disciplined hierarchy and visible product proof turn visual judgment into a system builders can use.', proof:'The system should show its work.', principle:'“Clarity is a design decision: expose the mechanics before adding ornament.”' },
+          expressive: { background:'#25243e', accent:'#ed7567', foreground:'#fbf9ff', headline:'Make the system<br />unmistakable.', summary:'A purposeful visual signal gives the product character while the core workflow remains legible.', proof:'Distinctive, with a job to do.', principle:'“Every memorable gesture should point back to a decision the agent can repeat.”' }
+        };
+        return { family, names, antiNames, ...palettes[family] };
+      }
+      function applyCalibrationToCommit() {
+        const profile = getCurationProfile();
+        const isWarm = +lensTemperature.value > 50;
+        const resolvedChoices = comparisonChoices.filter(Boolean);
+        const aChoices = resolvedChoices.filter(choice => choice === 'A').length;
+        const bChoices = resolvedChoices.filter(choice => choice === 'B').length;
+        const latestDirection = [...comparisonChoices].reverse().find(choice => choice === 'A' || choice === 'B');
+        tokenBackground.value = isWarm ? profile.background : '#eceeeb';
+        tokenAccent.value = profile.accent;
+        tokenForeground.value = profile.foreground;
+        commitSite.dataset.density = +lensDensity.value > 50 ? 'airy' : 'compact';
+        commitSite.dataset.contrast = +lensContrast.value > 55 ? 'bold' : 'soft';
+        commitSite.dataset.direction = latestDirection === 'B' ? 'product' : 'editorial';
+        commitSite.dataset.curation = profile.family;
+        const headline = profile.family === 'expressive' && aChoices <= bChoices ? 'Make the system<br />unmistakable.' : bChoices > aChoices ? 'Make the working system<br />easy to trust.' : profile.headline;
+        commitSite.querySelector('#commit-headline').innerHTML = headline;
+        commitSite.querySelector('#commit-summary').textContent = profile.summary;
+        commitSite.querySelector('#commit-proof-title').textContent = profile.proof;
+        commitSite.querySelector('#commit-proof-copy').textContent = `${resolvedChoices.length ? 'Your saved comparisons' : 'Your next comparisons'} turn the chosen references into specific rules the agent can apply across future screens.`;
+        commitSite.querySelector('#commit-principle').textContent = profile.principle;
+        applyCommitTokens();
+      }
+      function updateLenses() {
+        const density = +lensDensity.value > 50 ? 'airy' : 'compact';
+        const temperature = +lensTemperature.value > 50 ? 'warm' : 'neutral';
+        const contrast = +lensContrast.value > 55 ? 'bold' : 'soft';
+        calibrationArea.dataset.lensDensity = density;
+        calibrationArea.dataset.lensTemperature = temperature;
+        calibrationArea.dataset.lensContrast = contrast;
+        document.getElementById('density-out').textContent = density === 'airy' ? 'Airy' : 'Compact';
+        document.getElementById('temperature-out').textContent = temperature === 'warm' ? 'Warm' : 'Neutral';
+        document.getElementById('contrast-out').textContent = contrast === 'bold' ? 'Bold' : 'Soft';
+        applyCalibrationToCommit();
+      }
+      [lensDensity, lensTemperature, lensContrast].forEach(control => control.addEventListener('input', updateLenses));
+      [tokenBackground, tokenAccent, tokenForeground, tokenRadius, tokenScale].forEach(control => control.addEventListener('input', applyCommitTokens));
+      document.querySelectorAll('[data-token-tab]').forEach(tab => tab.addEventListener('click', () => {
+        document.querySelectorAll('[data-token-tab]').forEach(item => item.classList.toggle('active', item === tab));
+        document.querySelectorAll('[data-token-group]').forEach(group => group.hidden = group.dataset.tokenGroup !== tab.dataset.tokenTab);
+      }));
+      updateLenses();
+      document.getElementById('apply-system').addEventListener('click', () => showToast('Visual system applied to your product preview'));
+      document.getElementById('export-btn').addEventListener('click', () => { document.getElementById('export-deliverables').hidden = false; });
     </script>
   </body>
 </html>
