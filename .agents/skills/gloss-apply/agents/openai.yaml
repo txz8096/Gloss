@@ -1,0 +1,4 @@
+interface:
+  display_name: "Gloss Apply"
+  short_description: "Apply exported Gloss Design DNA to a real product screen."
+  default_prompt: "Use $gloss-apply to apply the exported Gloss design system to this screen."
